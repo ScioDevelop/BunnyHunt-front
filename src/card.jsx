@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-function SingleCard({ card, handleChoice }) {
+function SingleCard({ card, handleChoice, setIsRunning, isRunning, createAnaliticReport }) {
   const [flip,setFlip] = useState(false)
 
   // function handleClick() {
@@ -13,8 +13,16 @@ function SingleCard({ card, handleChoice }) {
 
   const handleMouseDown = () => {
     timerIdRef.current = setTimeout(() => {
+      if(card.src=="/img/rabbit.png"){
+        setIsRunning(true)
+        createAnaliticReport(card, true)
+        setFlip(true);
+        return
+      }
+
+      createAnaliticReport(card, isRunning)
       setFlip(true);
-    }, 700); // 700 milliseconds = 0,7 second
+    }, 600); // 700 milliseconds = 0,7 second
   };
 
   const handleMouseUp = () => {
