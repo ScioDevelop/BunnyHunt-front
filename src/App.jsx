@@ -46,13 +46,17 @@ function App() {
     <div className="App">
       <div className="header">
       <h1>Rabbit hunt</h1>
+      <h1>{matchNumber}</h1>
+      
       <CountdownTimer
       setIsRunning={setIsRunning}
       isRunning={isRunning}
       shuffleCards={shuffleCards}
       setMatchNumber={setMatchNumber}
       matchNumber={matchNumber}
-      ></CountdownTimer>
+      >
+
+    </CountdownTimer>
      </div>
 
       <div className="card-grid">
