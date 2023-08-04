@@ -45,14 +45,14 @@ function SingleCard({ card, handleChoice, setIsRunning, isRunning, createAnaliti
           >
               <img
               className="front"
-              src={card.src}
-              alt="card front"
+              src={card.type=="blue" ? "" : card.src}
+              alt={card.type=="blue" ? card.src : card.src}
               style={{objectFit: "fill"}}
               /></div>
           :
           <img 
             className="back"
-            src="/img/cover.svg"
+            src={"/img/cover-" + card.type + ".svg" } 
             alt="cover"
             style={{ cursor: 'pointer' }}
             onMouseDown={handleMouseDown}
