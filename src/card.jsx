@@ -1,28 +1,40 @@
 import { useState, useRef } from "react";
 
-function SingleCard({ card, handleChoice, setIsRunning, isRunning, createAnaliticReport }) {
-  const [flip,setFlip] = useState(false)
+function SingleCard({
+  card,
+  handleChoice,
+  setIsRunning,
+  isRunning,
+  createAnaliticReport,
+}) {
+  const [flip, setFlip] = useState(false);
 
   // function handleClick() {
   //   handleChoice(card)
   //   setFlip(true)
-  // } 
+  // }
 
   const [isActivated, setIsActivated] = useState(false);
   const timerIdRef = useRef(null);
 
   const handleMouseDown = () => {
+   
+    // Analitic Data Creation
+    if (card.src == "/img/rabbit.png") {
+      createAnaliticReport(card, true);
+    } else {
+      createAnaliticReport(card, isRunning);
+    }
+    
+    
     timerIdRef.current = setTimeout(() => {
-      if(card.src=="/img/rabbit.png"){
-        setIsRunning(true)
-        createAnaliticReport(card, true)
+      if (card.src == "/img/rabbit.png") {
+        setIsRunning(true);
         setFlip(true);
-        return
+        return;
       }
-
-      createAnaliticReport(card, isRunning)
       setFlip(true);
-    }, 600); // 700 milliseconds = 0,7 second
+    }, 2000); // 700 milliseconds = 0,7 second
   };
 
   const handleMouseUp = () => {
@@ -33,35 +45,65 @@ function SingleCard({ card, handleChoice, setIsRunning, isRunning, createAnaliti
   const handleImageDragStart = (e) => {
     e.preventDefault();
   };
-  
-  return (
-        <div className="card" style={{width:"280px",height: "280px"}}>
-        <div>
-          {flip? 
-          <div 
-            width="300px"
-            height="300px"
-            style={{display: "flex", backgroundColor: "white", width: "280px",height: "280px", alignItems: "center", justifyContent: "center",overflow: "hidden"}}
-          >
-              <img
-              className="front"
-              src={card.type=="blue" ? "" : card.src}
-              alt={card.type=="blue" ? card.src : card.src}
-              style={{objectFit: "fill"}}
-              /></div>
-          :
-          <img 
-            className="back"
-            src={"/img/cover-" + card.type + ".svg" } 
-            alt="cover"
-            style={{ cursor: 'pointer' }}
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-            onDragStart={handleImageDragStart}
-            />}
-        </div>
-      </div>
-    );
+
+
+  let divStyleBigImage = {
+    position: "relative",
+    backgroundColor: "#1d1d1d",
+    width: "280px",
+    height: "280px",
+    overflow: "hidden", // Add this property to hide overflow
   }
 
-export default SingleCard
+  let divStyleText_SmallImage = { position: "relative", backgroundColor: "#1d1d1d", width: "280px", height: "280px" }
+
+  let imgStyleBigImage = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    objectFit: "cover", // Use 'cover' to make the image fill the container, cropping if necessary
+    width: "100%",
+    height: "100%",
+  }
+
+  let imgStyleText_SmallImage = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    objectFit: "fill",
+  }
+
+  return (
+    <div className="card">
+      <div className={flip ? "flipped" : ""}>
+        <div className="card-container front">
+          <div
+            style={card.type === "green"? divStyleBigImage : divStyleText_SmallImage}
+          >
+            {/* Stack the image on top of the div */}
+            <img
+              className={card.type === "green" ? "greenCardFront" : ""}
+              src={card.type === "blue" ? "" : card.src}
+              alt={card.type === "blue" ? card.src : card.src}
+              style={card.type === "green"? imgStyleBigImage : imgStyleText_SmallImage }
+            />
+          </div>
+        </div>
+
+        <img
+          className="back"
+          src={"/img/cover-" + card.type + ".svg"}
+          alt="cover"
+          style={{ cursor: "pointer" }}
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+          onDragStart={handleImageDragStart}
+        />
+      </div>
+    </div>
+  );
+}
+
+export default SingleCard;

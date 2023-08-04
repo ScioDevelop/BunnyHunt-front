@@ -14,15 +14,6 @@
   -webkit-text-size-adjust: 100%;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   display: flex;
   flex-direction: column;
@@ -32,38 +23,6 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
 .header {
@@ -78,6 +37,7 @@ button:focus-visible {
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+  z-index: 999;
 }
 
 .header p {
@@ -88,4 +48,50 @@ button:focus-visible {
 
 .App {
   margin-top: 69px;
+}
+
+.card-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+}
+
+
+.card-container {
+  width: 280px;
+  height: 280px;
+  display: flex;
+  object-position: 50% 50%;
+}
+
+
+.front img {
+  /* Use 'object-fit' property to control how the image behaves inside its container */
+  margin:auto;
+  text-align:center;
+  background-color: #1d1d1d;
+
+  object-fit: cover;
+}
+
+
+
+.front {
+  position: relative;
+  transform: rotateY(90deg);
+}
+
+.card {
+  position: relative;
+}
+
+
+/* front of card - the picture */
+.card .front {
+  transform: rotateY(90deg);
+  position: absolute;
+}
+.flipped .front {
+  transform: rotateY(0deg);
 }
