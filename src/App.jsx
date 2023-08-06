@@ -85,7 +85,7 @@ const cardImagesBLUE = [
   { "src": "Kapusta obsahuje více vitaminu C než pomeranče.", "type": "blue" },
   { "src": "Medvědi hibernují celou zimu a nespí po celou dobu.", "type": "blue" },
   { "src": "Diamanty jsou nejtvrdší známou látkou na Zemi.", "type": "blue" },
-  { "src": "Pluton byl dříve považován za devátou planetu sluneční soustavy.", "type": "blue" },
+  { "src": "Pluto byl dříve považován za devátou planetu sluneční soustavy.", "type": "blue" },
   { "src": "Vesmír nemá známý konec, je nekonečný.", "type": "blue" },
   { "src": "Ořechy jsou skvělým zdrojem zdravých tuků a bílkovin.", "type": "blue" },
   { "src": "Hvězdy jsou obrovské koule plazmy, které svítí vlastním jasem.", "type": "blue" },

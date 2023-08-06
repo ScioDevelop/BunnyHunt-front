@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import ConfettiExplosion from 'react-confetti-explosion';
 
 function SingleCard({
   card,
@@ -8,7 +9,8 @@ function SingleCard({
   createAnaliticReport,
 }) {
   const [flip, setFlip] = useState(false);
-
+  const [isExploding, setIsExploding] = useState(false);
+  
   // function handleClick() {
   //   handleChoice(card)
   //   setFlip(true)
@@ -29,6 +31,7 @@ function SingleCard({
     
     timerIdRef.current = setTimeout(() => {
       if (card.src == "/img/rabbit.png") {
+        setIsExploding(true)
         setIsRunning(true);
         setFlip(true);
         return;
@@ -82,7 +85,7 @@ function SingleCard({
           <div
             style={card.type === "green"? divStyleBigImage : divStyleText_SmallImage}
           >
-            {/* Stack the image on top of the div */}
+            {isExploding && <ConfettiExplosion duration={3000} style={imgStyleText_SmallImage}/>}
             <img
               className={card.type === "green" ? "greenCardFront" : ""}
               src={card.type === "blue" ? "" : card.src}
@@ -101,6 +104,7 @@ function SingleCard({
           onMouseUp={handleMouseUp}
           onDragStart={handleImageDragStart}
         />
+
       </div>
     </div>
   );
