@@ -1,0 +1,17 @@
+.vertical-filling-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    pointer-events: none;
+  }
+  
+  .fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.234); /* Replace with your desired fill color */
+  }
+  

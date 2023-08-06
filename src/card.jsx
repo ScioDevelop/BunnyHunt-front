@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import ConfettiExplosion from 'react-confetti-explosion';
+import VerticalFillingBar from "./VerticalFillingBar";
 
 function SingleCard({
   card,
@@ -10,38 +11,48 @@ function SingleCard({
 }) {
   const [flip, setFlip] = useState(false);
   const [isExploding, setIsExploding] = useState(false);
-  
-  // function handleClick() {
-  //   handleChoice(card)
-  //   setFlip(true)
-  // }
+  const [barTime, setBarTime] = useState(0);
+  const [isHolding, setIsHolding] = useState(false);
 
-  const [isActivated, setIsActivated] = useState(false);
-  const timerIdRef = useRef(null);
+  const intervalRef = useRef();
+  const timerIdRef = useRef();
+
+  const startTimer = () => {
+    clearInterval(intervalRef.current);
+    setBarTime(0);
+    intervalRef.current = setInterval(() => {
+      setBarTime((prevTimer) => prevTimer + 10); // Increment by 10ms (adjust as needed)
+    }, 10); // Set the interval to 10ms (adjust as needed)
+  };
+
+  const stopTimer = () => {
+    clearInterval(intervalRef.current);
+    setBarTime(0);
+  };
 
   const handleMouseDown = () => {
-   
-    // Analitic Data Creation
-    if (card.src == "/img/rabbit.png") {
-      createAnaliticReport(card, true);
-    } else {
-      createAnaliticReport(card, isRunning);
-    }
-    
-    
+    startTimer();
+    setIsHolding(true);
     timerIdRef.current = setTimeout(() => {
-      if (card.src == "/img/rabbit.png") {
-        setIsExploding(true)
+      setIsHolding(false);
+      if (card.src === "/img/rabbit.png") {
+        setBarTime(2000)
+        setIsExploding(true);
         setIsRunning(true);
         setFlip(true);
-        return;
+        stopTimer();
+      } else {
+        setBarTime(2000)
+        setFlip(true);
+        stopTimer();
       }
-      setFlip(true);
-    }, 2000); // 700 milliseconds = 0,7 second
+    }, 2000); // 2 seconds (adjust as needed)
   };
 
   const handleMouseUp = () => {
     clearTimeout(timerIdRef.current);
+    setIsHolding(false);
+    stopTimer();
     setFlip(false);
   };
 
@@ -95,15 +106,19 @@ function SingleCard({
           </div>
         </div>
 
+        <div className="card-container back">
+       
+       {flip ? <></>: <VerticalFillingBar fillPercentage={(barTime/2800)*100}/>}
         <img
           className="back"
           src={"/img/cover-" + card.type + ".svg"}
           alt="cover"
-          style={{ cursor: "pointer" }}
+          style={{  cursor: "pointer"}}
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
           onDragStart={handleImageDragStart}
         />
+        </div>
 
       </div>
     </div>
