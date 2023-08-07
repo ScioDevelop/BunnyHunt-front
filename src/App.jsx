@@ -3,7 +3,7 @@ import "./App.css";
 import NavBar from "./NavBar";
 import { useState } from "react";
 import cardImages from './imputs.js';
-import MenuPage from "./menuPage";
+import MenuPage from "./MenuPage";
 import Game from "./GameCards";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom"
