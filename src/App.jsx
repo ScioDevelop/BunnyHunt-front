@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
-import Game from "./game";
 import NavBar from "./NavBar";
 import { useState } from "react";
 import cardImages from './imputs.js';
 import MenuPage from "./menuPage";
+import Game from "./GameCards";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
