@@ -27,9 +27,8 @@ const CountdownTimer = ({isRunning,setIsRunning,shuffleCards, matchNumber, setMa
     return (
       <div>
         {isRunning ?
-        <p style={{marginLeft: "20px"}}> další kolo za 00:{timeLeft}</p>
-          :
-          <></>
+        <p style={{marginLeft: "20px"}}> králíček nalezen! další kolo za 00:{timeLeft}</p>
+          : <p style={{marginLeft: "20px"}}>                      </p>
       }
       </div>
     );

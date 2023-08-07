@@ -74,8 +74,6 @@ h1 {
   object-fit: cover;
 }
 
-
-
 .front {
   position: relative;
   transform: rotateY(90deg);
@@ -85,7 +83,6 @@ h1 {
   position: relative;
 }
 
-
 /* front of card - the picture */
 .card .front {
   transform: rotateY(90deg);
@@ -93,4 +90,26 @@ h1 {
 }
 .flipped .front {
   transform: rotateY(0deg);
+}
+
+.backOfCardred {
+  border: 7px solid #da3d15;
+  outline-offset: -7px;
+}
+
+.backOfCardblue {
+  outline: 7px solid #5a9bf3;
+  outline-offset: -7px;
+}
+
+.backOfCardgreen > img {
+  outline: 7px solid #2fcc71;
+  outline-offset: -7px;
+}
+
+.backOfCardRabbit {
+  border: 7px solid transparent;
+  outline-offset: -7px;
+  border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
+  border-image-slice: 7;
 }

@@ -76,7 +76,7 @@ function SingleCard({
     overflow: "hidden", // Add this property to hide overflow
   }
 
-  let divStyleText_SmallImage = { position: "relative", backgroundColor: "#1d1d1d", width: "280px", height: "280px" }
+  let divStyleText_SmallImage = { position: "relative", backgroundColor: "#1d1d1d", width: "280px" }
 
   let imgStyleBigImage = {
     position: "absolute",
@@ -100,7 +100,8 @@ function SingleCard({
     <div className="card">
       <div className={flip ? "flipped" : ""}>
         <div className="card-container front">
-          <div
+          
+          <div className={card.src === "/img/rabbit.png" ? "backOfCardRabbit" : "backOfCard"+card.type}
             style={card.type === "green"? divStyleBigImage : divStyleText_SmallImage}
           >
             {isExploding && <ConfettiExplosion duration={3000} style={imgStyleText_SmallImage}/>}
@@ -116,6 +117,7 @@ function SingleCard({
         <div className="card-container back">
        
        {flip ? <></>: <VerticalFillingBar fillPercentage={(barTime/2800)*100}/>}
+        
         <img
           className="back"
           src={"/img/cover-" + card.type + ".svg"}
@@ -125,6 +127,7 @@ function SingleCard({
           onMouseUp={handleMouseUp}
           onDragStart={handleImageDragStart}
         />
+
         </div>
       </div>
     </div>
