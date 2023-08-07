@@ -33,6 +33,13 @@ function SingleCard({
   const handleMouseDown = () => {
     startTimer();
     setIsHolding(true);
+    
+    if(isRunning){
+      createAnaliticReport(card,true)
+    }else{
+      createAnaliticReport(card,false)
+    }
+
     timerIdRef.current = setTimeout(() => {
       setIsHolding(false);
       if (card.src === "/img/rabbit.png") {
@@ -119,7 +126,6 @@ function SingleCard({
           onDragStart={handleImageDragStart}
         />
         </div>
-
       </div>
     </div>
   );
