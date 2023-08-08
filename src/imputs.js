@@ -39,149 +39,51 @@ const cardImagesRED = [
   
   const cardImagesGREEN = [
     {
-      src: "https://plus.unsplash.com/premium_photo-1669046586732-85f07137923a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=900&q=60",
+      src: "https://source.unsplash.com/random/nature",
       type: "green",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1689686611078-a33b28e0a3a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2OXx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
+    },{
+      src: "https://source.unsplash.com/random/flower",
       type: "green",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1690362156187-0eda74b8d53f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
+    },{
+      src: "https://source.unsplash.com/random/fuji",
       type: "green",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1691000367560-b7f97ae35fa8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
+    },{
+      src: "https://source.unsplash.com/random/wallpapers",
       type: "green",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1690983182598-32726730ccb4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0Mnx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
+    },{
+      src: "https://source.unsplash.com/random/dish",
       type: "green",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1690818724344-182bc6f19709?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=900&q=60",
+    },{
+      src: "https://source.unsplash.com/random/study",
       type: "green",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1690362156187-0eda74b8d53f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
+    },{
+      src: "https://source.unsplash.com/random/fantasy",
       type: "green",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1688233599454-55e2ea1d8bfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxM3x8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
+    },{
+      src: "https://source.unsplash.com/random/swamp",
       type: "green",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1688233599454-55e2ea1d8bfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxM3x8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
+    },{
+      src: "https://source.unsplash.com/random/beach",
       type: "green",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1690573339641-2cf20e7f6d50?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
+    },{
+      src: "https://source.unsplash.com/random/land",
       type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
+    },{
+      src: "https://source.unsplash.com/random/art",
       type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
+    },{
+      src: "https://source.unsplash.com/random/book",
       type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
+    },{
+      src: "https://source.unsplash.com/random/icecream",
       type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
+    },{
+      src: "https://source.unsplash.com/random/sea",
       type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
+    },{
+      src: "https://source.unsplash.com/random/mood",
       type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
-    {
-      src: "https://source.unsplash.com/random",
-      type: "green",
-    },
+    }
   ];
   
   const cardImagesBLUE = [
