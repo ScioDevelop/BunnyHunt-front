@@ -45,22 +45,13 @@ const cardImagesRED = [
       src: "https://source.unsplash.com/random/flower",
       type: "green",
     },{
-      src: "https://source.unsplash.com/random/fuji",
-      type: "green",
-    },{
       src: "https://source.unsplash.com/random/wallpapers",
       type: "green",
     },{
       src: "https://source.unsplash.com/random/dish",
       type: "green",
     },{
-      src: "https://source.unsplash.com/random/study",
-      type: "green",
-    },{
       src: "https://source.unsplash.com/random/fantasy",
-      type: "green",
-    },{
-      src: "https://source.unsplash.com/random/swamp",
       type: "green",
     },{
       src: "https://source.unsplash.com/random/beach",
@@ -79,9 +70,6 @@ const cardImagesRED = [
       type: "green",
     },{
       src: "https://source.unsplash.com/random/sea",
-      type: "green",
-    },{
-      src: "https://source.unsplash.com/random/mood",
       type: "green",
     }
   ];
