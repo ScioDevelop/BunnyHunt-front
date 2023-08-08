@@ -10,8 +10,8 @@ function Game({isRunning, setIsRunning,cards,setAnalitic,shuffleCards,analitic,m
   useEffect(() => {
     let interval;
     interval = setInterval(() => {
-      setMilliseconds((prevMilliseconds) => prevMilliseconds + 1);
-    }, 1);
+      setMilliseconds((prevMilliseconds) => prevMilliseconds + 10);
+    }, 10);
     return () => clearInterval(interval);
   }, [milliseconds]);
 
