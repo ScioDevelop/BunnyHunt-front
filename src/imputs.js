@@ -78,6 +78,110 @@ const cardImagesRED = [
       src: "https://images.unsplash.com/photo-1690573339641-2cf20e7f6d50?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
       type: "green",
     },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
+    {
+      src: "https://source.unsplash.com/random",
+      type: "green",
+    },
   ];
   
   const cardImagesBLUE = [
