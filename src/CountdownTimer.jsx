@@ -11,23 +11,26 @@ const CountdownTimer = ({isRunning,setIsRunning,shuffleCards, matchNumber, setMa
           setTimeLeft((prevTime) => prevTime - 1);
         }, 1000);
       } else if (timeLeft === 0) {
-        setIsRunning(false);
-        setTimeLeft(30)
-        setMatchNumber(matchNumber + 1)
-        shuffleCards()
-        console.log("Time runs down");
+        
       }
   
       return () => {
         clearInterval(timer);
       };
     }, [isRunning, timeLeft]);
-  
+    
+    function nextRound(){
+      setIsRunning(false);
+        setTimeLeft(30)
+        setMatchNumber(matchNumber + 1)
+        shuffleCards()
+        console.log("Time runs down");
+  }
   
     return (
       <div>
         {isRunning ?
-        <p style={{marginLeft: "20px"}}> králíček nalezen! další kolo za 00:{timeLeft}</p>
+        <p style={{marginLeft: "20px"}}> králíček nalezen! další kolo za 00:{timeLeft} {timeLeft===0 ? <button onClick={() => nextRound()}>Další kolo</button> :<></>}</p>
           : <p style={{marginLeft: "20px"}}>                      </p>
       }
       </div>
