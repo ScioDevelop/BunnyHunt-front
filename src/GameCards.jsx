@@ -22,7 +22,7 @@ function Game({isRunning, setIsRunning,cards,setAnalitic,shuffleCards,analitic,m
   function createAnaliticReport(card, IsBunnyFound) {
     let newData = analitic.push({
       time: milliseconds,
-      objekt_type: card.type,
+      objekt_type: card.color,
       bunnyFound: IsBunnyFound,
       matchNumber: matchNumber,
     });

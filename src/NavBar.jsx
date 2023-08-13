@@ -5,6 +5,7 @@ const numberData = ["počáteční kolo", "prví", "druhé", "třetí", "čtvrt�
 
 function NavBar({isRunning, setIsRunning,shuffleCards,matchNumber, setMatchNumber}) {
   return (
+    <div>
     <div className="header">
         <h1>Rabbit hunt</h1>
         <h1>{matchNumber==0 ? "" : matchNumber + ".kolo"}</h1>
@@ -16,7 +17,10 @@ function NavBar({isRunning, setIsRunning,shuffleCards,matchNumber, setMatchNumbe
           setMatchNumber={setMatchNumber}
           matchNumber={matchNumber}
         ></CountdownTimer>
-
+      
+      </div>
+      <p style={{margin: "20px",}}> Prostory pro pokyny: Hledej králíčka </p>
+      
       </div>
   )
 }

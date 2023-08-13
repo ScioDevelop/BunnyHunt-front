@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import ConfettiExplosion from 'react-confetti-explosion';
 import VerticalFillingBar from "./VerticalFillingBar";
 
@@ -13,6 +13,8 @@ function SingleCard({
   const [isExploding, setIsExploding] = useState(false);
   const [barTime, setBarTime] = useState(0);
   const [isHolding, setIsHolding] = useState(false);
+  
+  const [circles, setCircles] = useState([]);
 
   const intervalRef = useRef();
   const timerIdRef = useRef();
@@ -43,17 +45,17 @@ function SingleCard({
     timerIdRef.current = setTimeout(() => {
       setIsHolding(false);
       if (card.src === "/img/rabbit.png") {
-        setBarTime(2000)
+        setBarTime(card.time)
         setIsExploding(true);
         setIsRunning(true);
         setFlip(true);
         stopTimer();
       } else {
-        setBarTime(2000)
+        setBarTime(card.time)
         setFlip(true);
         stopTimer();
       }
-    }, 2000); // 2 seconds (adjust as needed)
+    }, card.time); // 2 seconds (adjust as needed)
   };
 
   const handleMouseUp = () => {
@@ -96,39 +98,63 @@ function SingleCard({
     objectFit: "fill",
   }
 
+  function genCircles(){
+    const newElements = [];
+
+    for (let i = 0; i < Math.round(card.time/1000); i++) {
+      newElements.push(<svg key={i} width="55px" height="55px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.369755245">
+          <circle id="Oval" fill="#000000" cx="50%" cy="50%" r="15"></circle>
+      </g>
+      </svg>);
+    }
+    
+    setCircles(newElements);
+  }
+
+  useEffect(() => {
+    genCircles()
+  }, []);
+
   return (
     <div className="card">
       <div className={flip ? "flipped" : ""}>
         <div className="card-container front">
           
-          <div className={card.src === "/img/rabbit.png" ? "backOfCardRabbit" : "backOfCard"+card.type}
-            style={card.type === "green"? divStyleBigImage : divStyleText_SmallImage}
+          <div className={card.src === "/img/rabbit.png" ? "backOfCardRabbit" : "backOfCard"+card.color}
+            style={card.color === "green"? divStyleBigImage : divStyleText_SmallImage}
           >
             {isExploding && <ConfettiExplosion duration={3000} style={imgStyleText_SmallImage}/>}
-            <img
-              className={card.type === "green" ? "greenCardFront" : ""}
-              src={card.type === "blue" ? "" : card.src}
-              alt={card.type === "blue" ? card.src : card.src}
-              style={card.type === "green"? imgStyleBigImage : imgStyleText_SmallImage }
-            />
+            
+            { card.color==="blue" ? <b style={imgStyleText_SmallImage}>{card.src}</b> : 
+              <img
+              className={card.color === "green" ? "greenCardFront" : ""}
+              src={card.src}
+              alt={card.src}
+              style={card.color === "green"? imgStyleBigImage : imgStyleText_SmallImage }
+              />
+            }
+
           </div>
         </div>
 
         <div className="card-container back">
-       
-       {flip ? <></>: <VerticalFillingBar fillPercentage={(barTime/2800)*100}/>}
         
-        <img
-          className="back"
-          src={"/img/cover-" + card.type + ".svg"}
-          alt="cover"
-          style={{  cursor: "pointer"}}
-          onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
-          onDragStart={handleImageDragStart}
-        />
-
-        </div>
+        {flip ? <></> : <div className="circle-container back">{circles}</div>}
+    
+    
+    {flip ? <></> : <VerticalFillingBar fillPercentage={barTime / (card.time + 800) * 100} />}
+    
+    <img
+        className="back"
+        src={"/img/cover-" + card.color + ".svg"}
+        alt="cover"
+        style={{ cursor: "pointer" }}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onDragStart={handleImageDragStart}
+    />
+</div>
       </div>
     </div>
   );

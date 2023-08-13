@@ -43,12 +43,28 @@ function App() {
       ...shuffledCardsBlue.slice(0, 7),
     ];
 
-    shuffledCards.push({ src: "/img/rabbit.png", type: "red" });
+    shuffledCards.push({ src: "/img/rabbit.png", color: "red" });
+
+    function SetTime(color){
+      switch (color) {
+        case "red":
+          return 5000
+          case "green":
+          return 3000
+          case "blue":
+          return 1000
+        default:
+          return 0
+      }
+    }
 
     let cardsWithID = shuffledCards.map((card) => ({
       ...card,
       id: Math.random(),
+      time: SetTime(card.color)
     }));
+
+    
     shuffleArray(cardsWithID);
     //console.log(cardsWithID)
 

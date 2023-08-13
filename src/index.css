@@ -53,8 +53,10 @@ h1 {
 .card-grid {
   margin-top: 40px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust as needed */
   grid-gap: 10px;
+  justify-content: center; /* To center-align the cards */
+  max-width: 100%; /* Ensure the grid doesn't overflow horizontally */
 }
 
 
@@ -112,4 +114,16 @@ h1 {
   outline-offset: -7px;
   border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
   border-image-slice: 7;
+}
+
+.circle-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 59px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
 }
