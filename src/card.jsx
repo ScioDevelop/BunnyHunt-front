@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import ConfettiExplosion from 'react-confetti-explosion';
 import VerticalFillingBar from "./VerticalFillingBar";
+import GifPlayer from './GifPlayer';
 
 function SingleCard({
   card,
@@ -115,6 +116,7 @@ function SingleCard({
   useEffect(() => {
     genCircles()
   }, []);
+  
 
   return (
     <div className="card">
@@ -127,12 +129,17 @@ function SingleCard({
             {isExploding && <ConfettiExplosion duration={3000} style={imgStyleText_SmallImage}/>}
             
             { card.color==="blue" ? <b style={imgStyleText_SmallImage}>{card.src}</b> : 
+              
+              card.src.slice(-3) === "gif"?
+              <GifPlayer gifSrc={card.src} style={{ maxWidth: '100%', maxHeight: '100%' }}/>
+              :
               <img
               className={card.color === "green" ? "greenCardFront" : ""}
               src={card.src}
               alt={card.src}
               style={card.color === "green"? imgStyleBigImage : imgStyleText_SmallImage }
               />
+              
             }
 
           </div>

@@ -10,6 +10,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import TimeCounter from "./TimeCounter";
 
+import { useAtom } from 'jotai'
+import { BoardSize } from "./DataManagement";
+
 function App() {
   
   const [isRunning, setIsRunning] = useState(false);
@@ -17,6 +20,8 @@ function App() {
   const [analitic, setAnalitic] = useState([]);
   const [cards, setCards] = useState([]);
   const [matchNumber, setMatchNumber] = useState(0);
+  
+  const [BoardSizeAtom] = useAtom(BoardSize)
 
   // shuffle cards for new game
   const shuffleCards = () => {
@@ -29,8 +34,40 @@ function App() {
       }
     }
 
+    let numberOfCardsInBoard= BoardSizeAtom[0]*BoardSizeAtom[1]
+    let SliceRed = 0
+    let SliceBlue = 0
+    let SliceGreen = 0
+    
+    let difference = 1
+
+    if (numberOfCardsInBoard%3===0){
+      SliceRed = numberOfCardsInBoard/3
+      SliceBlue = numberOfCardsInBoard/3
+      SliceGreen = numberOfCardsInBoard/3
+    } else {
+      if( (numberOfCardsInBoard-1)%3!==0){
+        difference=2
+      }
+      SliceRed = (numberOfCardsInBoard-difference)/3
+      SliceBlue = (numberOfCardsInBoard-difference)/3
+      SliceGreen = (numberOfCardsInBoard-difference)/3
+
+    }
+
+    function linksToCardData(setOflinks,color){
+      
+      let outputData = []
+      
+      setOflinks.forEach(link => {
+        outputData.push({ src: link, color: color },)
+      });
+
+      return outputData
+    }
+
     let shuffledCardsRed = [... cardImages.cardImagesRED];
-    let shuffledCardsGreen = [...cardImages.cardImagesGREEN];
+    let shuffledCardsGreen = [...cardImages.cardImagesGREEN, ...linksToCardData(cardImages.cardGifs, "green")];
     let shuffledCardsBlue = [...cardImages.cardImagesBLUE];
 
     shuffleArray(shuffledCardsRed);
@@ -38,9 +75,9 @@ function App() {
     shuffleArray(shuffledCardsBlue);
 
     let shuffledCards = [
-      ...shuffledCardsRed.slice(0, 5),
-      ...shuffledCardsGreen.slice(0, 7),
-      ...shuffledCardsBlue.slice(0, 7),
+      ...shuffledCardsRed.slice(0, SliceRed-1),
+      ...shuffledCardsGreen.slice(0, SliceGreen),
+      ...shuffledCardsBlue.slice(0, SliceBlue),
     ];
 
     shuffledCards.push({ src: "/img/rabbit.png", color: "red" });

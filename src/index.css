@@ -109,6 +109,12 @@ h1 {
   outline-offset: -7px;
 }
 
+.greenBorder, canvas {
+  outline: 7px solid #2fcc71;
+  outline-offset: -7px;
+}
+
+
 .backOfCardRabbit {
   border: 7px solid transparent;
   outline-offset: -7px;
