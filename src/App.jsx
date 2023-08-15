@@ -3,15 +3,17 @@ import "./App.css";
 import NavBar from "./NavBar";
 import { useState } from "react";
 import cardImages from './imputs.js';
+
 import MenuPage from "./MenuPage";
 import Game from "./GameCards";
+import Settings from "./Settings";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import TimeCounter from "./TimeCounter";
 
 import { useAtom } from 'jotai'
-import { BoardSize } from "./DataManagement";
+import { GameSettings } from "./DataManagement";
 
 function App() {
   
@@ -21,7 +23,7 @@ function App() {
   const [cards, setCards] = useState([]);
   const [matchNumber, setMatchNumber] = useState(0);
   
-  const [BoardSizeAtom] = useAtom(BoardSize)
+  const [GameSettingAtom] = useAtom(GameSettings)
 
   // shuffle cards for new game
   const shuffleCards = () => {
@@ -34,7 +36,7 @@ function App() {
       }
     }
 
-    let numberOfCardsInBoard= BoardSizeAtom[0]*BoardSizeAtom[1]
+    let numberOfCardsInBoard= Number(GameSettingAtom.m)*Number(GameSettingAtom.n)
     let SliceRed = 0
     let SliceBlue = 0
     let SliceGreen = 0
@@ -55,41 +57,55 @@ function App() {
 
     }
 
-    function linksToCardData(setOflinks,color){
+    function linksToCardData(setOflinks,type){
       
       let outputData = []
       
       setOflinks.forEach(link => {
-        outputData.push({ src: link, color: color },)
+        outputData.push({ "src": link, "type": type },)
       });
 
       return outputData
     }
 
     let shuffledCardsRed = [... cardImages.cardImagesRED];
-    let shuffledCardsGreen = [...cardImages.cardImagesGREEN, ...linksToCardData(cardImages.cardGifs, "green")];
+    let shuffledCardsGreen = [...cardImages.cardImagesGREEN, ...linksToCardData(cardImages.cardGifs ,"gif")];
     let shuffledCardsBlue = [...cardImages.cardImagesBLUE];
 
-    shuffleArray(shuffledCardsRed);
-    shuffleArray(shuffledCardsGreen);
-    shuffleArray(shuffledCardsBlue);
+    shuffleArray(shuffledCardsGreen)
 
+    let selectedCardsForGame1 = shuffledCardsRed.slice(0, SliceRed-1)
+    let selectedCardsForGame2 = shuffledCardsGreen.slice(0, SliceGreen)
+    let selectedCardsForGame3 = shuffledCardsBlue.slice(0, SliceBlue)
+    
+    shuffleArray(selectedCardsForGame1)
+    shuffleArray(selectedCardsForGame2)
+    shuffleArray(selectedCardsForGame3)
+
+    function SetColorToCard(cards,color){
+      let outputData = []
+      cards.forEach(card => {
+        outputData.push({ ...card, "color": color },)
+      });
+      return outputData
+    }
+    
     let shuffledCards = [
-      ...shuffledCardsRed.slice(0, SliceRed-1),
-      ...shuffledCardsGreen.slice(0, SliceGreen),
-      ...shuffledCardsBlue.slice(0, SliceBlue),
+      ...SetColorToCard(selectedCardsForGame1,GameSettingAtom.C1),
+      ...SetColorToCard(selectedCardsForGame2,GameSettingAtom.C2),
+      ...SetColorToCard(selectedCardsForGame3,GameSettingAtom.C3),
     ];
 
-    shuffledCards.push({ src: "/img/rabbit.png", color: "red" });
+    shuffledCards.push({ src: "/img/rabbit.png", color: GameSettingAtom.C1 });
 
     function SetTime(color){
       switch (color) {
         case "red":
-          return 5000
+          return GameSettingAtom.T1
           case "green":
-          return 3000
+          return GameSettingAtom.T2
           case "blue":
-          return 1000
+          return GameSettingAtom.T2
         default:
           return 0
       }
@@ -118,6 +134,7 @@ function App() {
       <Route path="*"  />
       <Route path="/" element={<MenuPage />}/>
       <Route path="/game" element={<Game isRunning={isRunning} setIsRunning={setIsRunning} cards={cards} setAnalitic={setAnalitic} analitic={analitic} shuffleCards={shuffleCards} matchNumber={matchNumber} setMatchNumber={setMatchNumber}/>} />
+      <Route path="/settings" element={<Settings />}/>
       <Route path="/end"  />
       
       </Routes>

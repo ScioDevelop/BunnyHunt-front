@@ -124,20 +124,18 @@ function SingleCard({
         <div className="card-container front">
           
           <div className={card.src === "/img/rabbit.png" ? "backOfCardRabbit" : "backOfCard"+card.color}
-            style={card.color === "green"? divStyleBigImage : divStyleText_SmallImage}
+            style={card.type === "image"? divStyleBigImage : divStyleText_SmallImage}
           >
             {isExploding && <ConfettiExplosion duration={3000} style={imgStyleText_SmallImage}/>}
             
-            { card.color==="blue" ? <b style={imgStyleText_SmallImage}>{card.src}</b> : 
+            { card.type==="text" ? <b style={imgStyleText_SmallImage}>{card.src}</b> : 
               
-              card.src.slice(-3) === "gif"?
+              card.type === "gif"?
               <GifPlayer gifSrc={card.src} style={{ maxWidth: '100%', maxHeight: '100%' }}/>
               :
               <img
-              className={card.color === "green" ? "greenCardFront" : ""}
               src={card.src}
-              alt={card.src}
-              style={card.color === "green"? imgStyleBigImage : imgStyleText_SmallImage }
+              style={card.type === "image"? imgStyleBigImage : imgStyleText_SmallImage }
               />
               
             }
@@ -150,7 +148,7 @@ function SingleCard({
         {flip ? <></> : <div className="circle-container back">{circles}</div>}
     
     
-    {flip ? <></> : <VerticalFillingBar fillPercentage={barTime / (card.time + 800) * 100} />}
+    {flip ? <></> : <VerticalFillingBar fillPercentage={barTime / (Number(card.time) + 800) * 100} />}
     
     <img
         className="back"

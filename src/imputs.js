@@ -1,114 +1,114 @@
 const cardImagesRED = [
-  { src: "/img/parrot.png", color: "red" },
-  { src: "/img/chicken.png", color: "red" },
-  { src: "/img/sloth.png", color: "red" },
-  { src: "/img/snake.png", color: "red" },
-  { src: "/img/walrus.png", color: "red" },
-  { src: "/img/whale.png", color: "red" },
-  { src: "/img/zebra.png", color: "red" },
-  { src: "/img/chick.png", color: "red" },
-  { src: "/img/buffalo.png", color: "red" },
-  { src: "/img/panda.png", color: "red" },
-  { src: "/img/cow.png", color: "red" },
-  { src: "/img/crocodile.png", color: "red" },
-  { src: "/img/dog.png", color: "red" },
-  { src: "/img/duck.png", color: "red" },
-  { src: "/img/elephant.png", color: "red" },
-  { src: "/img/frog.png", color: "red" },
-  { src: "/img/giraffe.png", color: "red" },
-  { src: "/img/goat.png", color: "red" },
-  { src: "/img/gorilla.png", color: "red" },
-  { src: "/img/hippo.png", color: "red" },
-  { src: "/img/horse.png", color: "red" },
-  { src: "/img/monkey.png", color: "red" },
-  { src: "/img/narwhal.png", color: "red" },
-  { src: "/img/owl.png", color: "red" },
-  { src: "/img/panda.png", color: "red" },
-  { src: "/img/penguin.png", color: "red" },
-  { src: "/img/pig.png", color: "red" },
-  { src: "/img/rabbit.png", color: "red" },
-  { src: "/img/rhino.png", color: "red" },
-  { src: "/img/sloth.png", color: "red" },
-  { src: "/img/snake.png", color: "red" },
-  { src: "/img/walrus.png", color: "red" },
-  { src: "/img/whale.png", color: "red" },
-  { src: "/img/zebra.png", color: "red" },
-  { src: "/img/chick.png", color: "red" },
-  { src: "/img/buffalo.png", color: "red" },
+  { src: "/img/parrot.png", type: "animal" },
+  { src: "/img/chicken.png", type: "animal" },
+  { src: "/img/sloth.png", type: "animal" },
+  { src: "/img/snake.png", type: "animal" },
+  { src: "/img/walrus.png", type: "animal" },
+  { src: "/img/whale.png", type: "animal" },
+  { src: "/img/zebra.png", type: "animal" },
+  { src: "/img/chick.png", type: "animal" },
+  { src: "/img/buffalo.png", type: "animal" },
+  { src: "/img/panda.png", type: "animal" },
+  { src: "/img/cow.png", type: "animal" },
+  { src: "/img/crocodile.png", type: "animal" },
+  { src: "/img/dog.png", type: "animal" },
+  { src: "/img/duck.png", type: "animal" },
+  { src: "/img/elephant.png", type: "animal" },
+  { src: "/img/frog.png", type: "animal" },
+  { src: "/img/giraffe.png", type: "animal" },
+  { src: "/img/goat.png", type: "animal" },
+  { src: "/img/gorilla.png", type: "animal" },
+  { src: "/img/hippo.png", type: "animal" },
+  { src: "/img/horse.png", type: "animal" },
+  { src: "/img/monkey.png", type: "animal" },
+  { src: "/img/narwhal.png", type: "animal" },
+  { src: "/img/owl.png", type: "animal" },
+  { src: "/img/panda.png", type: "animal" },
+  { src: "/img/penguin.png", type: "animal" },
+  { src: "/img/pig.png", type: "animal" },
+  { src: "/img/rabbit.png", type: "animal" },
+  { src: "/img/rhino.png", type: "animal" },
+  { src: "/img/sloth.png", type: "animal" },
+  { src: "/img/snake.png", type: "animal" },
+  { src: "/img/walrus.png", type: "animal" },
+  { src: "/img/whale.png", type: "animal" },
+  { src: "/img/zebra.png", type: "animal" },
+  { src: "/img/chick.png", type: "animal" },
+  { src: "/img/buffalo.png", type: "animal" },
 ];
 
 const cardImagesGREEN = [
   {
     src: "https://images.unsplash.com/photo-1601325059290-eac581b71510?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bW9vZHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=900&q=60",
-    color: "green",
+    type: "image"
   },
   {
     src: "https://images.unsplash.com/photo-1536420113339-670e1666cbdd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW9vZHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=900&q=60",
-    color: "green",
+    type: "image"
   },
   {
     src: "https://images.unsplash.com/photo-1596869628264-2344d70a73ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bW9vZHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=900&q=60",
-    color: "green",
+    type: "image"
   },
   {
     src: "https://images.unsplash.com/photo-1612982228462-180baddf0d41?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1vb2R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=900&q=60",
-    color: "green",
+    type: "image"
   },
   {
     src: "https://images.unsplash.com/photo-1509114397022-ed747cca3f65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fG1vb2R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=900&q=60",
-    color: "green",
+    type: "image"
   },
   {
     src: "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=900&q=60",
-    color: "green",
+    type: "image"
   },
   {
     src: "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=900&q=60",
-    color: "green",
+    type: "image"
   },
   {
     src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=900&q=60",
-    color: "green",
+    type: "image"
   },
   {
     src: "https://images.unsplash.com/photo-1505144808419-1957a94ca61e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=900&q=60",
-    color: "green",
+    type: "image"
   },
   {
     src: "https://images.unsplash.com/photo-1475113548554-5a36f1f523d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=900&q=60",
-    color: "green",
+    type: "image"
   },
   {
     src: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=900&q=60",
-    color: "green",
+    type: "image"
   },
   {
     src: "https://images.unsplash.com/photo-1691268891144-09cb1cb7eb04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=900&q=60m",
-    color: "green",
+    type: "image"
   },
   {
     src: "https://images.unsplash.com/photo-1595642527925-4d41cb781653?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
-    color: "green",
+    type: "image"
   },
   {
     src: "https://images.unsplash.com/photo-1632341503970-dbec32e7ec76?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=900&q=60",
-    color: "green",
+    type: "image"
   },
   {
     src: "https://images.unsplash.com/photo-1580268518598-b53b397378fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=900&q=60",
-    color: "green",
+    type: "image"
   },
   {
     src: "https://images.unsplash.com/photo-1595642527171-455bd3dc7fb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDZ8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=900&q=60",
-    color: "green",
+    type: "image"
   },
   {
     src: "https://images.unsplash.com/photo-1668156360712-6e549b11c16a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=900&q=60",
-    color: "green",
+    type: "image"
   },
   {
     src: "https://images.unsplash.com/photo-1690896783396-a273052c50c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=900&q=60",
-    color: "green",
+    type: "image"
   },
 ];
 
@@ -138,157 +138,157 @@ const cardGifs = [
 
 
 const cardImagesBLUE = [
-  { src: "Mravenci mohou zdvihnout až 50krát svou váhu.", color: "blue" },
-  { src: "Šnek má 25 tisíc zubů, ale jsou velmi malé.", color: "blue" },
-  { src: "Včela třepotá křídly 200krát za vteřinu.", color: "blue" },
-  { src: "Přibližně 70% Země je pokryto vodou.", color: "blue" },
-  { src: "Ruce nemají otisky prstů.", color: "blue" },
-  { src: "Křídla kolibříka vibrují 80krát za sekundu.", color: "blue" },
-  { src: "Váš nos má schopnost rozpoznat až 1 bilion vůní.", color: "blue" },
-  { src: "Kočky mají 32 svalů v každém uchu.", color: "blue" },
+  { src: "Mravenci mohou zdvihnout až 50krát svou váhu.",type: "text" },
+  { src: "Šnek má 25 tisíc zubů, ale jsou velmi malé.",type: "text" },
+  { src: "Včela třepotá křídly 200krát za vteřinu.",type: "text" },
+  { src: "Přibližně 70% Země je pokryto vodou.",type: "text" },
+  { src: "Ruce nemají otisky prstů.",type: "text" },
+  { src: "Křídla kolibříka vibrují 80krát za sekundu.",type: "text" },
+  { src: "Váš nos má schopnost rozpoznat až 1 bilion vůní.",type: "text" },
+  { src: "Kočky mají 32 svalů v každém uchu.",type: "text" },
   {
     src: "V blízkosti sopky Stromboli stále hoří od roku 1932.",
-    color: "blue",
+    type: "text"
   },
-  { src: "Nejtěžší dešťová kapka vážila 250 gramů.", color: "blue" },
+  { src: "Nejtěžší dešťová kapka vážila 250 gramů.",type: "text" },
   {
     src: 'Delfíni mají jedinečné hlasové signály, které se nazývají "píšťalky".',
-    color: "blue",
+    type: "text"
   },
   {
     src: "Medvědi grizzly jsou výborní plavci a mohou se potápět až 30 sekund.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Kanguru skáče až sedm metrů daleko a tři metry vysoko.",
-    color: "blue",
+    type: "text"
   },
-  { src: "Vesmír nemá žádný okraj; je nekonečně velký.", color: "blue" },
+  { src: "Vesmír nemá žádný okraj; je nekonečně velký.",type: "text" },
   {
     src: "Mozart byl slavný hudební skladatel již ve svých 6 letech.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Velbloudi uchovávají tuk ve svých hrbolcích, ne ve vodních vakuolech.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Na Saturnu a Jupiteru jsou bouřky mnohem větší než na Zemi.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Kolibřík dokáže zastavit svůj srdcový tep, když spí, aby ušetřil energii.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Jedinec stráví asi 6 měsíců svého života čekáním na červenou světelnou signál.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Lidské oko je schopno rozeznat více než 10 milionů různých barev.",
-    color: "blue",
+    type: "text"
   },
-  { src: "Kapusta obsahuje více vitaminu C než pomeranče.", color: "blue" },
-  { src: "Medvědi hibernují celou zimu a nespí po celou dobu.", color: "blue" },
-  { src: "Diamanty jsou nejtvrdší známou látkou na Zemi.", color: "blue" },
+  { src: "Kapusta obsahuje více vitaminu C než pomeranče.",type: "text" },
+  { src: "Medvědi hibernují celou zimu a nespí po celou dobu.",type: "text" },
+  { src: "Diamanty jsou nejtvrdší známou látkou na Zemi.",type: "text" },
   {
     src: "Pluto byl dříve považován za devátou planetu sluneční soustavy.",
-    color: "blue",
+    type: "text"
   },
-  { src: "Vesmír nemá známý konec, je nekonečný.", color: "blue" },
+  { src: "Vesmír nemá známý konec, je nekonečný.",type: "text" },
   {
     src: "Ořechy jsou skvělým zdrojem zdravých tuků a bílkovin.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Hvězdy jsou obrovské koule plazmy, které svítí vlastním jasem.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Obratlovci mají páteř, která jim poskytuje oporu a chrání míchu.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Během 13 let obíhá Země kolem Slunce jen jednou kolem vlastní osy.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Skateboard byl původně vyvinut jako alternativa k surfování na suchu.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Medvědi mají vynikající čich, cítí potravu až z 20 km.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Kočky mohou vyskočit až šestkrát své délky ve vzduchu.",
-    color: "blue",
+    type: "text"
   },
-  { src: "Kamínek z kosmu může být starší než Země.", color: "blue" },
-  { src: "Hroši umí plavat až pět kilometrů za hodinu.", color: "blue" },
+  { src: "Kamínek z kosmu může být starší než Země.",type: "text" },
+  { src: "Hroši umí plavat až pět kilometrů za hodinu.",type: "text" },
   {
     src: "Sovy mají mnoho krčních obratlů, což jim umožňuje otáčet hlavou až o 270 stupňů.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Zebry mají pruhy, které jim pomáhají odhánět komáry.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Jedna lžíce včelího medu byla vyrobena z nektaru z více než dvou milionů květin.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Nejrychlejší běžec na světě, gepard, dosáhne rychlosti až 100 km/h.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Vulkanická erupce může vypustit lávu, sopečné bomby a popel.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Váš mozek může zpracovat informace rychleji než nejrychlejší počítač.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Ledničky fungují díky kompresoru a chladícímu médiu.",
-    color: "blue",
+    type: "text"
   },
   {
     src: "Zemská atmosféra je složena převážně z dusíku, kyslíku a argonu.",
-    color: "blue",
+    type: "text"
   },
-  { src: "Želva je plaz s tvrdým krunýřem.", color: "blue" },
+  { src: "Želva je plaz s tvrdým krunýřem.",type: "text" },
   {
     src: "Hodiny mají ručičky na ciferníku, aby ukazovaly čas.",
-    color: "blue",
+    type: "text"
   },
-  { src: "Lidský organismus se skládá z buněk.", color: "blue" },
-  { src: "Pianino je hudební nástroj s klávesami.", color: "blue" },
-  { src: "Kniha je soubor tištěných papírů s textem.", color: "blue" },
-  { src: "Bílá je kombinací všech barev viditelného světla.", color: "blue" },
-  { src: "Papír se vyrábí z dřeva.", color: "blue" },
-  { src: "Jabka jsou ovocem s kůží a semeny uvnitř.", color: "blue" },
-  { src: "Průměrná délka vlaku je asi 500 metrů.", color: "blue" },
-  { src: "Tráva roste pomalu, asi o 2,5 cm za týden.", color: "blue" },
-  { src: "Válcování těsta je důležité při pečení.", color: "blue" },
-  { src: "Papír je vyroben z dřeva.", color: "blue" },
-  { src: "Mávání rukama pomáhá komunikovat.", color: "blue" },
-  { src: "Kamenné zdi jsou pevné a používají se pro stavby.", color: "blue" },
-  { src: "Měsíc obíhá Zemi.", color: "blue" },
-  { src: "Vítr fouká různými směry.", color: "blue" },
-  { src: "Barvy se liší svými odstíny.", color: "blue" },
-  { src: "Košile je oblékací předmět.", color: "blue" },
-  { src: "Voda je bezbarvá a bez chuti.", color: "blue" },
-  { src: "Průměrný mrak obsahuje miliony kapek vody.", color: "blue" },
-  { src: "Kameny mohou být tvrdší než dřevo.", color: "blue" },
-  { src: "Tráva roste pomalu.", color: "blue" },
-  { src: "Mouchy mohou být opravdu otravné.", color: "blue" },
-  { src: "Nemoci mohou být nebezpečné.", color: "blue" },
-  { src: "Včerejší den už není dnes.", color: "blue" },
-  { src: "Pátek je poslední den pracovního týdne.", color: "blue" },
-  { src: "Košile je typ oděvu.", color: "blue" },
-  { src: "Měsíc obíhá Zemi.", color: "blue" },
+  { src: "Lidský organismus se skládá z buněk.",type: "text" },
+  { src: "Pianino je hudební nástroj s klávesami.",type: "text" },
+  { src: "Kniha je soubor tištěných papírů s textem.",type: "text" },
+  { src: "Bílá je kombinací všech barev viditelného světla.",type: "text" },
+  { src: "Papír se vyrábí z dřeva.",type: "text" },
+  { src: "Jabka jsou ovocem s kůží a semeny uvnitř.",type: "text" },
+  { src: "Průměrná délka vlaku je asi 500 metrů.",type: "text" },
+  { src: "Tráva roste pomalu, asi o 2,5 cm za týden.",type: "text" },
+  { src: "Válcování těsta je důležité při pečení.",type: "text" },
+  { src: "Papír je vyroben z dřeva.",type: "text" },
+  { src: "Mávání rukama pomáhá komunikovat.",type: "text" },
+  { src: "Kamenné zdi jsou pevné a používají se pro stavby.",type: "text" },
+  { src: "Měsíc obíhá Zemi.",type: "text" },
+  { src: "Vítr fouká různými směry.",type: "text" },
+  { src: "Barvy se liší svými odstíny.",type: "text" },
+  { src: "Košile je oblékací předmět.",type: "text" },
+  { src: "Voda je bezbarvá a bez chuti.",type: "text" },
+  { src: "Průměrný mrak obsahuje miliony kapek vody.",type: "text" },
+  { src: "Kameny mohou být tvrdší než dřevo.",type: "text" },
+  { src: "Tráva roste pomalu.",type: "text" },
+  { src: "Mouchy mohou být opravdu otravné.",type: "text" },
+  { src: "Nemoci mohou být nebezpečné.",type: "text" },
+  { src: "Včerejší den už není dnes.",type: "text" },
+  { src: "Pátek je poslední den pracovního týdne.",type: "text" },
+  { src: "Košile je typ oděvu.",type: "text" },
+  { src: "Měsíc obíhá Zemi.",type: "text" },
 ];
 
 export default { cardImagesRED, cardImagesGREEN, cardImagesBLUE, cardGifs };

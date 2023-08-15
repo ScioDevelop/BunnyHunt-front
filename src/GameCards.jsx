@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 
 //Atom
 import { useAtom } from 'jotai'
-import { BoardSize } from "./DataManagement";
+import { GameSettings } from "./DataManagement";
 
 function Game({isRunning, setIsRunning,cards,setAnalitic,shuffleCards,analitic,matchNumber,setMatchNumber}) {
 
   const [milliseconds, setMilliseconds] = useState(0);
-  const [BoardSizeAtom] = useAtom(BoardSize)
+  const [GameSettingsAtom] = useAtom(GameSettings)
 
   // milliseconds counter for analitic data
   useEffect(() => {
@@ -42,7 +42,7 @@ function Game({isRunning, setIsRunning,cards,setAnalitic,shuffleCards,analitic,m
   }, []);
 
   return (
-    <div className="card-grid" style={{gridTemplateColumns: "repeat("+BoardSizeAtom[0]+", minmax(280px, 1fr))"}}>
+    <div className="card-grid" style={{gridTemplateColumns: "repeat("+GameSettingsAtom.m+", minmax(280px, 1fr))"}}>
         {cards.map((card) => (
           <SingleCard
             key={card.id}
