@@ -22,6 +22,7 @@ function MenuPage() {
         3. Po nalezení králíčka se spustí odpočet a další kolo začne až za 30sek<br></br>
       </p>
       <Link to={"/game"}> Začít hru</Link>
+      <div><Link to={"/settings"}> Nastavení</Link></div>
     </div>
   );
 }
