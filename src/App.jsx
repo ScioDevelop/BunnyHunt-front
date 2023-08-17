@@ -96,7 +96,7 @@ function App() {
       ...SetColorToCard(selectedCardsForGame3,GameSettingAtom.C3),
     ];
 
-    shuffledCards.push({ src: "/img/rabbit.png", color: GameSettingAtom.C1 });
+    shuffledCards.push({ src: GameSettingAtom.FindingObject, color: GameSettingAtom.C1 });
 
     function SetTime(color){
       switch (color) {

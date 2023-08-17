@@ -61,7 +61,7 @@ function Settings() {
         />
         
         <h3>nastavení času v milisekundách</h3>
-        <label >čas do konce kola po nalezeni králíčka:</label>
+        <label >čas do konce kola po nalezeni králíčka (sekundy!):</label>
         <input
           type="number"
           name="nextTimmer"

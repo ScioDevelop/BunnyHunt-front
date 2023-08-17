@@ -9,7 +9,7 @@ export const GameSettings = atom(
         "n": "3",
         "FindingObject": "/img/rabbit.png",
         "FindingText": "najdi Kralicka",
-        "nextTimmer": "30000",
+        "nextTimmer": "60",
         "T1": "1000",
         "T2": "2000",
         "T3": "3000"

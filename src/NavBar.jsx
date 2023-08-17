@@ -1,9 +1,13 @@
 import React from 'react'
 import CountdownTimer from "./CountdownTimer";
 
-const numberData = ["počáteční kolo", "prví", "druhé", "třetí", "čtvrté", "páté", "šesté"] 
+import { useAtom } from 'jotai'
+import { GameSettings } from "./DataManagement";
+
 
 function NavBar({isRunning, setIsRunning,shuffleCards,matchNumber, setMatchNumber}) {
+  
+  const [GameSettingsAtom] = useAtom(GameSettings)
   return (
     <div>
     <div className="header">
@@ -19,7 +23,7 @@ function NavBar({isRunning, setIsRunning,shuffleCards,matchNumber, setMatchNumbe
         ></CountdownTimer>
       
       </div>
-      <p style={{margin: "20px",}}> Prostory pro pokyny: Hledej králíčka </p>
+      <p style={{margin: "20px",}}> Prostory pro pokyny: {GameSettingsAtom.FindingText} </p>
       
       </div>
   )

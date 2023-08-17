@@ -3,6 +3,9 @@ import ConfettiExplosion from 'react-confetti-explosion';
 import VerticalFillingBar from "./VerticalFillingBar";
 import GifPlayer from './GifPlayer';
 
+import { useAtom } from 'jotai'
+import { GameSettings } from "./DataManagement";
+
 function SingleCard({
   card,
   handleChoice,
@@ -19,6 +22,8 @@ function SingleCard({
 
   const intervalRef = useRef();
   const timerIdRef = useRef();
+
+  const [GameSettingsAtom] = useAtom(GameSettings)
 
   const startTimer = () => {
     clearInterval(intervalRef.current);
@@ -45,7 +50,7 @@ function SingleCard({
 
     timerIdRef.current = setTimeout(() => {
       setIsHolding(false);
-      if (card.src === "/img/rabbit.png") {
+      if (card.src === GameSettingsAtom.FindingObject) {
         setBarTime(card.time)
         setIsExploding(true);
         setIsRunning(true);

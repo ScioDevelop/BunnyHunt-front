@@ -1,7 +1,18 @@
 import React, { useState, useEffect } from "react";
 
+import { useAtom } from 'jotai'
+import { GameSettings } from "./DataManagement";
+
 const CountdownTimer = ({isRunning,setIsRunning,shuffleCards, matchNumber, setMatchNumber}) => {
-    const [timeLeft, setTimeLeft] = useState(30);
+  const [GameSettingsAtom] = useAtom(GameSettings)  
+  const [timeLeft, setTimeLeft] = useState(GameSettingsAtom.nextTimmer);
+
+  const formatTime = (totalSeconds) => {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  };
   
     useEffect(() => {
       let timer;
@@ -21,7 +32,7 @@ const CountdownTimer = ({isRunning,setIsRunning,shuffleCards, matchNumber, setMa
     
     function nextRound(){
       setIsRunning(false);
-        setTimeLeft(30)
+        setTimeLeft(GameSettingsAtom.nextTimmer)
         setMatchNumber(matchNumber + 1)
         shuffleCards()
         console.log("Time runs down");
@@ -30,7 +41,7 @@ const CountdownTimer = ({isRunning,setIsRunning,shuffleCards, matchNumber, setMa
     return (
       <div>
         {isRunning ?
-        <p style={{marginLeft: "20px"}}> králíček nalezen! další kolo za 00:{timeLeft} {timeLeft===0 ? <button onClick={() => nextRound()}>Další kolo</button> :<></>}</p>
+        <p style={{marginLeft: "20px"}}> králíček nalezen! další kolo za {formatTime(timeLeft)} {timeLeft===0 ? <button onClick={() => nextRound()}>Další kolo</button> :<></>}</p>
           : <p style={{marginLeft: "20px"}}>                      </p>
       }
       </div>
