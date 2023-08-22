@@ -4,7 +4,7 @@ import VerticalFillingBar from "./VerticalFillingBar";
 import GifPlayer from './GifPlayer';
 
 import { useAtom } from 'jotai'
-import { GameSettings } from "./DataManagement";
+import { BoardSize, GameSettings } from "./DataManagement";
 
 function SingleCard({
   card,
@@ -79,12 +79,12 @@ function SingleCard({
   let divStyleBigImage = {
     position: "relative",
     backgroundColor: "#1d1d1d",
-    width: "280px",
-    height: "280px",
+    width: "100%",
+    height: "100%",
     overflow: "hidden", // Add this property to hide overflow
   }
 
-  let divStyleText_SmallImage = { position: "relative", backgroundColor: "#1d1d1d", width: "280px" }
+  let divStyleText_SmallImage = { position: "relative", backgroundColor: "#1d1d1d", width: "100%" }
 
   let imgStyleBigImage = {
     position: "absolute",
@@ -102,13 +102,18 @@ function SingleCard({
     left: "50%",
     transform: "translate(-50%, -50%)",
     objectFit: "fill",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    textAlign: "center",
+    width: "auto",
+    height: "90%"
   }
 
   function genCircles(){
     const newElements = [];
 
     for (let i = 0; i < Math.round(card.time/1000); i++) {
-      newElements.push(<svg key={i} width="55px" height="55px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      newElements.push(<svg key={i} className="circless" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.369755245">
           <circle id="Oval" fill="#000000" cx="50%" cy="50%" r="15"></circle>
       </g>
@@ -125,15 +130,15 @@ function SingleCard({
 
   return (
     <div className="card">
-      <div className={flip ? "flipped" : ""}>
+      <div className={flip ? "flipped" : "card-size"}>
         <div className="card-container front">
           
-          <div className={card.src === "/img/rabbit.png" ? "backOfCardRabbit" : "backOfCard"+card.color}
+          <div className={card.src === GameSettingsAtom.FindingObject ? "backOfCardRabbit" : "backOfCard"+card.color}
             style={card.type === "image"? divStyleBigImage : divStyleText_SmallImage}
           >
             {isExploding && <ConfettiExplosion duration={3000} style={imgStyleText_SmallImage}/>}
             
-            { card.type==="text" ? <b style={imgStyleText_SmallImage}>{card.src}</b> : 
+            { card.type==="text" ? <b className="card-size" style={imgStyleText_SmallImage}>{card.src}</b> : 
               
               card.type === "gif"?
               <GifPlayer gifSrc={card.src} style={{ maxWidth: '100%', maxHeight: '100%' }}/>
@@ -150,7 +155,7 @@ function SingleCard({
 
         <div className="card-container back">
         
-        {flip ? <></> : <div className="circle-container back">{circles}</div>}
+        {flip ? <></> : <div className="circle-container card-size">{circles}</div>}
     
     
     {flip ? <></> : <VerticalFillingBar fillPercentage={barTime / (Number(card.time) + 800) * 100} />}

@@ -73,6 +73,8 @@ function App() {
     let shuffledCardsBlue = [...cardImages.cardImagesBLUE];
 
     shuffleArray(shuffledCardsGreen)
+    shuffleArray(shuffledCardsBlue)
+    shuffleArray(shuffledCardsRed)
 
     let selectedCardsForGame1 = shuffledCardsRed.slice(0, SliceRed-1)
     let selectedCardsForGame2 = shuffledCardsGreen.slice(0, SliceGreen)
@@ -105,7 +107,7 @@ function App() {
           case "green":
           return GameSettingAtom.T2
           case "blue":
-          return GameSettingAtom.T2
+          return GameSettingAtom.T3
         default:
           return 0
       }

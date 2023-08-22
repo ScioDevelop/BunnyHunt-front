@@ -42,7 +42,7 @@ function Game({isRunning, setIsRunning,cards,setAnalitic,shuffleCards,analitic,m
   }, []);
 
   return (
-    <div className="card-grid" style={{gridTemplateColumns: "repeat("+GameSettingsAtom.m+", minmax(280px, 1fr))"}}>
+    <div className="card-grid" style={{gridTemplateColumns: "repeat("+GameSettingsAtom.m+", minmax(auto, auto))"}}>
         {cards.map((card) => (
           <SingleCard
             key={card.id}

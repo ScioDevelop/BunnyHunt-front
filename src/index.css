@@ -53,7 +53,7 @@ h1 {
 .card-grid {
   margin-top: 40px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust as needed */
+  grid-template-columns: repeat(auto-fit, minmax(auto, auto)); /* Adjust as needed */
   grid-gap: 10px;
   justify-content: center; /* To center-align the cards */
   max-width: 100%; /* Ensure the grid doesn't overflow horizontally */
@@ -74,15 +74,20 @@ h1 {
   background-color: #1d1d1d;
 
   object-fit: cover;
+  height: 60%;
 }
 
 .front {
   position: relative;
   transform: rotateY(90deg);
+  width: 100%;
+  height: 100%;
 }
 
 .card {
   position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 /* front of card - the picture */
@@ -126,7 +131,6 @@ h1 {
   position: absolute;
   top: 0;
   left: 0;
-  margin: 59px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-content: center;
@@ -137,4 +141,27 @@ h1 {
 label, input {
   display: table-cell;
   margin-bottom: 10px;
+}
+
+.card-size {
+  width: 100%;
+  height: 100%;
+}
+
+.circless {
+  width: 100%;
+  height: 90%;
+}
+
+.back {
+  width: 100%;
+  height: 100%;
+}
+
+
+@media (max-width: 1000px) {
+  b { font-size: 3vh }
+}
+@media (max-width: 500px) {
+  b { font-size: 1vh }
 }
