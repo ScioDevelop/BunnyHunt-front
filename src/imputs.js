@@ -1,4 +1,4 @@
-const cardImagesRED = [
+const animal = [
   { src: "/img/parrot.png", type: "animal" },
   { src: "/img/chicken.png", type: "animal" },
   { src: "/img/sloth.png", type: "animal" },
@@ -37,7 +37,7 @@ const cardImagesRED = [
   { src: "/img/buffalo.png", type: "animal" },
 ];
 
-const cardImagesGREEN = [
+const image = [
   {
     src: "https://images.unsplash.com/photo-1601325059290-eac581b71510?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bW9vZHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=900&q=60",
     type: "image"
@@ -112,32 +112,27 @@ const cardImagesGREEN = [
   },
 ];
 
-
-
-const cardGifs = [
-  "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmdqaXM3a3cyODhyNndvb2dpYjFqeDRqbGZ1MWhwbDVqY2ZzbmxscSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Pj6TQs4cuQ7LAhebA5/giphy.gif",
-  "https://media4.giphy.com/media/TLJci36RLv0r9fjDnS/giphy.gif?cid=ecf05e47oeywady4livnl3etw1u6qtroi9lvb2gucz3w9lrt&ep=v1_gifs_related&rid=giphy.gif&ct=g",
-  "https://media0.giphy.com/media/HWLa2UnmEsc2qpYu8f/giphy.gif?cid=ecf05e47f5xlc92lzia2xp75ug232sldsq4e0g45g8fe8f7w&ep=v1_gifs_related&rid=giphy.gif&ct=g",
-  "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXY1OHNxNmdrcGtsZmxnazdqZmtmM2UzbTUzMXpnYmlmbHk0NWM0eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7bufc5FVF3G0Yym4/giphy.gif",
-  "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmV2MG1heGszYzRkcjNuaGM3Nm5zMWx3dGl6ajVsdXgzaDh0ZTVpeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5wWf7HapUvpOumiXZRK/giphy.gif",
-  "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExc25seG5rcWc3NHhlN3JhZW56NHdpcnZ5ZmV3czJieDk5eHB4cXpsayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ohhwqJFVp5uhesBaw/giphy.gif",
-  "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzNzczc5NXI3OG5oOHZzaWdib2F5eGdydjZlOTNuYWFuaXUxdDc5diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ToMjGpM1LUHd2wf590k/giphy.gif",
-  "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2Qyb3ptNnN2cmw0c2hqOWFkNHdtYXg3ZHVyeGpicDFlZmMxYWsxZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8PpFJcG4y8HqsxQumz/giphy.gif",
-  "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXp3Z3hrdzdyMTN4ZjNyNWVjbWUzeHAzZzVzZHhoYWU0Y3h6NXJ1MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/povenlBAIz14s/giphy.gif",
-  "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHAxeHVtZW5idnZ2aDlkZWkyaXd2NWExMGlkbzk0aXlwdDh1NnNjZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3owyplNkncaF5Xax20/giphy.gif",
-  "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHd2N2hxMnY0c2dudG1qN3hnczZpMWF3ZnZ1cmU3bDlpZW82Y2xqaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKT7WnwXR44vbSU/giphy.gif",
-  "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeDJ0N3hqc2w5Y2FkY25kYTJtdWFobHppZHpiMjJsaWp6eDhkd3d4aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oEjHSRHr1j7N4tJjW/giphy.gif",
-  "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3M4dnhuZzF1cXJ0MGswbWZzazhvZGZxbG40MXFmM3RrMmdiamcwYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d7xOn1iRmEqm4WcabG/giphy.gif",
-  "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTFnYXRxMWpqaHdjMTJrc2k4ZHhhOHBocWpxM3hrbG9wcTcxZ3k5ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l1J3no85ixdGj5D3y/giphy.gif",
-  "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzg0amk0bno1ZXpjcTJka2twM251ZDQxZW1qeGMyY25rOWhxbmptNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8ady8gcLCNoI/giphy.gif",
-  "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExamV5ZG5hamFrZGc4MGp3bm52dTF3MDVwMGx5aGdrcDJjM2Uwbmd2dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2XskdWD7GfyQfvCollm/giphy.gif",
-  "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXFzdWN0ejJtYWYxNnhqajl4ZHZxamY1Y3piZHFsOWFqYm9xOTlsdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3og0IzmjgW3eJuMLew/giphy.gif"
+const gif = [
+  {src: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmdqaXM3a3cyODhyNndvb2dpYjFqeDRqbGZ1MWhwbDVqY2ZzbmxscSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Pj6TQs4cuQ7LAhebA5/giphy.gif", type: "gif" },
+  {src: "https://media4.giphy.com/media/TLJci36RLv0r9fjDnS/giphy.gif?cid=ecf05e47oeywady4livnl3etw1u6qtroi9lvb2gucz3w9lrt&ep=v1_gifs_related&rid=giphy.gif&ct=g", type: "gif" },
+  {src: "https://media0.giphy.com/media/HWLa2UnmEsc2qpYu8f/giphy.gif?cid=ecf05e47f5xlc92lzia2xp75ug232sldsq4e0g45g8fe8f7w&ep=v1_gifs_related&rid=giphy.gif&ct=g", type: "gif" },
+  {src: "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXY1OHNxNmdrcGtsZmxnazdqZmtmM2UzbTUzMXpnYmlmbHk0NWM0eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7bufc5FVF3G0Yym4/giphy.gif", type: "gif" },
+  {src: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmV2MG1heGszYzRkcjNuaGM3Nm5zMWx3dGl6ajVsdXgzaDh0ZTVpeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5wWf7HapUvpOumiXZRK/giphy.gif", type: "gif" },
+  {src: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExc25seG5rcWc3NHhlN3JhZW56NHdpcnZ5ZmV3czJieDk5eHB4cXpsayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ohhwqJFVp5uhesBaw/giphy.gif", type: "gif" },
+  {src: "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzNzczc5NXI3OG5oOHZzaWdib2F5eGdydjZlOTNuYWFuaXUxdDc5diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ToMjGpM1LUHd2wf590k/giphy.gif", type: "gif" },
+  {src: "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2Qyb3ptNnN2cmw0c2hqOWFkNHdtYXg3ZHVyeGpicDFlZmMxYWsxZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8PpFJcG4y8HqsxQumz/giphy.gif", type: "gif" },
+  {src: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXp3Z3hrdzdyMTN4ZjNyNWVjbWUzeHAzZzVzZHhoYWU0Y3h6NXJ1MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/povenlBAIz14s/giphy.gif", type: "gif" },
+  {src: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHAxeHVtZW5idnZ2aDlkZWkyaXd2NWExMGlkbzk0aXlwdDh1NnNjZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3owyplNkncaF5Xax20/giphy.gif", type: "gif" },
+  {src: "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHd2N2hxMnY0c2dudG1qN3hnczZpMWF3ZnZ1cmU3bDlpZW82Y2xqaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKT7WnwXR44vbSU/giphy.gif", type: "gif" },
+  {src: "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeDJ0N3hqc2w5Y2FkY25kYTJtdWFobHppZHpiMjJsaWp6eDhkd3d4aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oEjHSRHr1j7N4tJjW/giphy.gif", type: "gif" },
+  {src: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3M4dnhuZzF1cXJ0MGswbWZzazhvZGZxbG40MXFmM3RrMmdiamcwYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d7xOn1iRmEqm4WcabG/giphy.gif", type: "gif" },
+  {src: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTFnYXRxMWpqaHdjMTJrc2k4ZHhhOHBocWpxM3hrbG9wcTcxZ3k5ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l1J3no85ixdGj5D3y/giphy.gif", type: "gif" },
+  {src: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzg0amk0bno1ZXpjcTJka2twM251ZDQxZW1qeGMyY25rOWhxbmptNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8ady8gcLCNoI/giphy.gif", type: "gif" },
+  {src: "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExamV5ZG5hamFrZGc4MGp3bm52dTF3MDVwMGx5aGdrcDJjM2Uwbmd2dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2XskdWD7GfyQfvCollm/giphy.gif", type: "gif" },
+  {src: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXFzdWN0ejJtYWYxNnhqajl4ZHZxamY1Y3piZHFsOWFqYm9xOTlsdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3og0IzmjgW3eJuMLew/giphy.gif", type: "gif" }
 ]
 
-
-
-
-const cardImagesBLUE = [
+const text = [
   { src: "Mravenci mohou zdvihnout až 50krát svou váhu.",type: "text" },
   { src: "Šnek má 25 tisíc zubů, ale jsou velmi malé.",type: "text" },
   { src: "Včela třepotá křídly 200krát za vteřinu.",type: "text" },
@@ -291,4 +286,4 @@ const cardImagesBLUE = [
   { src: "Měsíc obíhá Zemi.",type: "text" },
 ];
 
-export default { cardImagesRED, cardImagesGREEN, cardImagesBLUE, cardGifs };
+export default { text, gif, image, animal };

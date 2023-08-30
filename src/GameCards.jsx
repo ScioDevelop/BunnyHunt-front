@@ -4,12 +4,13 @@ import { useState, useEffect } from "react";
 
 //Atom
 import { useAtom } from 'jotai'
-import { GameSettings } from "./DataManagement";
+import { NumberOfRounds,GameSettings } from "./DataManagement";
 
-function Game({isRunning, setIsRunning,cards,setAnalitic,shuffleCards,analitic,matchNumber,setMatchNumber}) {
+function Game({isRunning, setIsRunning,cards,setAnalitic,shuffleCards,analitic,matchNumber,setMatchNumber,setUpGame}) {
 
   const [milliseconds, setMilliseconds] = useState(0);
   const [GameSettingsAtom] = useAtom(GameSettings)
+  const [NumberOfRoundAtom] = useAtom(NumberOfRounds)
 
   // milliseconds counter for analitic data
   useEffect(() => {
@@ -37,12 +38,16 @@ function Game({isRunning, setIsRunning,cards,setAnalitic,shuffleCards,analitic,m
 
   useEffect(() => {
     shuffleCards();
-    shuffleCards();
-    setMatchNumber(1)
   }, []);
+  
+
+  useEffect(() => {
+    shuffleCards();
+    console.log(NumberOfRoundAtom)
+  }, [NumberOfRoundAtom]);
 
   return (
-    <div className="card-grid" style={{gridTemplateColumns: "repeat("+GameSettingsAtom.m+", minmax(auto, auto))"}}>
+    <div className="card-grid" style={{gridTemplateColumns: "repeat(" + GameSettingsAtom[NumberOfRoundAtom].HraciPlocha[0] + ", minmax(auto, auto))"}}>
         {cards.map((card) => (
           <SingleCard
             key={card.id}

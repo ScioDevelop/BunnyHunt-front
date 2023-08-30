@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useAtom } from 'jotai'
-import { GameSettings } from "./DataManagement";
+import { GameSettings, NumberOfRounds, timeLeft } from "./DataManagement";
+import ReactHtmlParser from 'react-html-parser';
 
-const CountdownTimer = ({isRunning,setIsRunning,shuffleCards, matchNumber, setMatchNumber}) => {
-  const [GameSettingsAtom] = useAtom(GameSettings)  
-  const [timeLeft, setTimeLeft] = useState(GameSettingsAtom.nextTimmer);
+const CountdownTimer = ({isRunning,setIsRunning, matchNumber, setMatchNumber}) => {
+  
+  const [GameSettingsAtom] = useAtom(GameSettings)
+  const [NumberOfRoundsAtom, setNumberOfRoundsAtom] = useAtom(NumberOfRounds)
+  const navigate = useNavigate();
+
+  const [timeLeftAtom, setTimeLeftAtom] = useAtom(timeLeft);
 
   const formatTime = (totalSeconds) => {
     const hours = Math.floor(totalSeconds / 3600);
@@ -17,32 +23,40 @@ const CountdownTimer = ({isRunning,setIsRunning,shuffleCards, matchNumber, setMa
     useEffect(() => {
       let timer;
   
-      if (isRunning && timeLeft > 0) {
+      if (isRunning && timeLeftAtom > 0) {
         timer = setInterval(() => {
-          setTimeLeft((prevTime) => prevTime - 1);
+          setTimeLeftAtom((prevTime) => prevTime - 1);
         }, 1000);
-      } else if (timeLeft === 0) {
+      } else if (timeLeftAtom === 0) {
         
       }
   
       return () => {
         clearInterval(timer);
       };
-    }, [isRunning, timeLeft]);
+    }, [isRunning, timeLeftAtom]);
     
     function nextRound(){
-      setIsRunning(false);
-        setTimeLeft(GameSettingsAtom.nextTimmer)
-        setMatchNumber(matchNumber + 1)
-        shuffleCards()
-        console.log("Time runs down");
+        if(NumberOfRoundsAtom+1 === GameSettingsAtom.length){
+          //konec hry
+          console.log(NumberOfRoundsAtom,GameSettingsAtom.length)
+          return navigate("/end");
+
+        }else {
+          const NewData = NumberOfRoundsAtom + 1
+          setNumberOfRoundsAtom(NewData);
+
+          setIsRunning(false);
+          setTimeLeftAtom(GameSettingsAtom[NewData]?.KonecKolaTime ?? 10)
+          console.log("Time runs down");
+        }
   }
   
     return (
       <div>
         {isRunning ?
-        <p style={{marginLeft: "20px"}}> králíček nalezen! další kolo za {formatTime(timeLeft)} {timeLeft===0 ? <button onClick={() => nextRound()}>Další kolo</button> :<></>}</p>
-          : <p style={{marginLeft: "20px"}}>                      </p>
+        <div> {ReactHtmlParser(GameSettingsAtom[NumberOfRoundsAtom].ZpravaPriOdpoctu)} {formatTime(timeLeftAtom)} {timeLeftAtom===0 ? <button onClick={() => nextRound()}>Další kolo</button> :<></>}</div>
+          : <div>{"   "}</div>
       }
       </div>
     );

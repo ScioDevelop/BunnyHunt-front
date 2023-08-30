@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import freezeframe from 'freezeframe';
 
-const GifPlayer = ({ gifSrc }) => {
+const GifPlayer = ({ gifSrc, cardColor }) => {
   const gifContainerRef = useRef(null);
 
   useEffect(() => {
@@ -15,8 +15,8 @@ const GifPlayer = ({ gifSrc }) => {
 
 
   return (
-    <div ref={gifContainerRef} className='greenBorder'>
-      <img src={gifSrc} alt="GIF" className='greenBorder'/>
+    <div ref={gifContainerRef} >
+      <img src={gifSrc} alt="GIF"/>
     </div>
   );
 };

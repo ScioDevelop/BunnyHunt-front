@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from "react";
-import ConfettiExplosion from 'react-confetti-explosion';
-import VerticalFillingBar from "./VerticalFillingBar";
-import GifPlayer from './GifPlayer';
+import ConfettiExplosion from "react-confetti-explosion";
+import GifPlayer from "./GifPlayer";
+import { useNavigate } from "react-router-dom";
 
-import { useAtom } from 'jotai'
-import { BoardSize, GameSettings } from "./DataManagement";
+import { useAtom } from "jotai";
+import { GameSettings, NumberOfRounds, Attempts, AttemptsColor, timeLeft } from "./DataManagement";
 
 function SingleCard({
   card,
@@ -17,13 +17,20 @@ function SingleCard({
   const [isExploding, setIsExploding] = useState(false);
   const [barTime, setBarTime] = useState(0);
   const [isHolding, setIsHolding] = useState(false);
-  
+
   const [circles, setCircles] = useState([]);
 
   const intervalRef = useRef();
   const timerIdRef = useRef();
 
-  const [GameSettingsAtom] = useAtom(GameSettings)
+  const [GameSettingsAtom] = useAtom(GameSettings);
+  const [NumberOfRoundsAtom, setNumberOfRoundsAtom] = useAtom(NumberOfRounds);
+  
+  const [AttemptsAtom, setAttemptsAtom] = useAtom(Attempts);
+  const [AttemptsColorAtom, setAttemptsColorAtom] = useAtom(AttemptsColor);
+  const [timeLeftAtom, setTimeLeftAtom] = useAtom(timeLeft);
+
+  const navigate = useNavigate();
 
   const startTimer = () => {
     clearInterval(intervalRef.current);
@@ -38,28 +45,102 @@ function SingleCard({
     setBarTime(0);
   };
 
+  function nextRound(){
+    setAttemptsAtom(0)
+    setAttemptsColorAtom({red: 0, green: 0, blue: 0})
+    if(NumberOfRoundsAtom+1 === GameSettingsAtom.length){
+      //konec hry
+      console.log(NumberOfRoundsAtom,GameSettingsAtom.length)
+      return navigate("/end");
+
+    }else {
+      //next round
+      if(GameSettingsAtom[NumberOfRoundsAtom+1].KonecKola === "afterTime"){
+        console.log(GameSettingsAtom[NumberOfRoundsAtom+1].KonecKolaTime)
+        setTimeLeftAtom(GameSettingsAtom[NumberOfRoundsAtom+1].KonecKolaTime)
+      }
+
+      const NewData = NumberOfRoundsAtom + 1
+      setNumberOfRoundsAtom(NewData);
+    }
+  }
+
   const handleMouseDown = () => {
     startTimer();
     setIsHolding(true);
-    
-    if(isRunning){
-      createAnaliticReport(card,true)
-    }else{
-      createAnaliticReport(card,false)
+
+    if (isRunning) {
+      createAnaliticReport(card, true);
+    } else {
+      createAnaliticReport(card, false);
     }
 
     timerIdRef.current = setTimeout(() => {
       setIsHolding(false);
-      if (card.src === GameSettingsAtom.FindingObject) {
-        setBarTime(card.time)
-        setIsExploding(true);
-        setIsRunning(true);
-        setFlip(true);
-        stopTimer();
-      } else {
-        setBarTime(card.time)
-        setFlip(true);
-        stopTimer();
+
+      let newAttempts = AttemptsAtom + 1
+      setAttemptsAtom(newAttempts)
+      
+      let newAttemptsColor = AttemptsColorAtom
+      newAttemptsColor[card.color] = newAttemptsColor[card.color] + 1
+      setAttemptsColorAtom(newAttemptsColor)
+      
+
+      if (GameSettingsAtom[NumberOfRoundsAtom].KonecKola === "find") {
+        if (card.src === GameSettingsAtom[NumberOfRoundsAtom].Goal.src) {
+          setIsExploding(true);
+          setFlip(true);
+          stopTimer();
+
+          const redirectTimeout = setTimeout(() => {
+            nextRound()
+          }, 3000);
+
+        } else {
+          setFlip(true);
+          stopTimer();
+        }
+      }
+
+      if (GameSettingsAtom[NumberOfRoundsAtom].KonecKola === "afterTime") {
+        if (card.src === GameSettingsAtom[NumberOfRoundsAtom].Goal.src) {
+          setIsRunning(true);
+          setIsExploding(true);
+          setFlip(true);
+          stopTimer();
+        } else {
+          setFlip(true);
+          stopTimer();
+        }
+      }
+
+      if (GameSettingsAtom[NumberOfRoundsAtom].KonecKola === "afterAttempts") {
+        if(GameSettingsAtom[NumberOfRoundsAtom].afterAttemptsCount === AttemptsAtom+1){
+          setFlip(true);
+          stopTimer();
+          setIsExploding(true);
+          setAttemptsAtom(0)
+          setAttemptsColorAtom({red: 0, green: 0, blue: 0})
+
+          nextRound()
+        } else{
+          setFlip(true);
+          stopTimer();
+        }
+      }
+      if (GameSettingsAtom[NumberOfRoundsAtom].KonecKola ==="afterSpecificColorAttempts") {
+        if(GameSettingsAtom[NumberOfRoundsAtom].afterAttemptsCount === AttemptsColorAtom[GameSettingsAtom[NumberOfRoundsAtom].afterSpecificColorAttemptsColor]){
+          setFlip(true);
+          stopTimer();
+          setIsExploding(true);
+          setAttemptsAtom(0)
+          setAttemptsColorAtom({red: 0, green: 0, blue: 0})
+
+          nextRound()
+        } else{
+          setFlip(true);
+          stopTimer();
+        }
       }
     }, card.time); // 2 seconds (adjust as needed)
   };
@@ -75,16 +156,19 @@ function SingleCard({
     e.preventDefault();
   };
 
-
   let divStyleBigImage = {
     position: "relative",
     backgroundColor: "#1d1d1d",
     width: "100%",
-    height: "100%",
+    // height: "100%",
     overflow: "hidden", // Add this property to hide overflow
-  }
+  };
 
-  let divStyleText_SmallImage = { position: "relative", backgroundColor: "#1d1d1d", width: "100%" }
+  let divStyleText_SmallImage = {
+    position: "relative",
+    backgroundColor: "#1d1d1d",
+    width: "100%",
+  };
 
   let imgStyleBigImage = {
     position: "absolute",
@@ -94,7 +178,7 @@ function SingleCard({
     objectFit: "cover", // Use 'cover' to make the image fill the container, cropping if necessary
     width: "100%",
     height: "100%",
-  }
+  };
 
   let imgStyleText_SmallImage = {
     position: "absolute",
@@ -106,70 +190,139 @@ function SingleCard({
     textOverflow: "ellipsis",
     textAlign: "center",
     width: "auto",
-    height: "90%"
-  }
+    height: "90%",
+  };
 
-  function genCircles(){
+  function genCircles() {
     const newElements = [];
 
-    for (let i = 0; i < Math.round(card.time/1000); i++) {
-      newElements.push(<svg key={i} className="circless" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.369755245">
-          <circle id="Oval" fill="#000000" cx="50%" cy="50%" r="15"></circle>
-      </g>
-      </svg>);
+    for (let i = 0; i < Math.round(card.time / 1000); i++) {
+      newElements.push(
+        <svg
+          key={i}
+          className="circless"
+          viewBox="0 0 50 50"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <g
+            id="Page-1"
+            stroke="none"
+            stroke-width="1"
+            fill="none"
+            fill-rule="evenodd"
+            fill-opacity="0.369755245"
+          >
+            <circle id="Oval" fill="#000000" cx="50%" cy="50%" r="15"></circle>
+          </g>
+        </svg>
+      );
     }
-    
+
+    setCircles(newElements);
+  }
+
+  function ChangeCircles(change) {
+    const newElements = [];
+
+    for (let i = 0; i < Math.round(card.time / 1000) - change; i++) {
+      newElements.push(
+        <svg
+          key={i}
+          className="circless"
+          viewBox="0 0 50 50"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <g
+            id="Page-1"
+            stroke="none"
+            stroke-width="1"
+            fill="none"
+            fill-rule="evenodd"
+            fill-opacity="0.369755245"
+          >
+            <circle id="Oval" fill="#000000" cx="50%" cy="50%" r="15"></circle>
+          </g>
+        </svg>
+      );
+    }
+
     setCircles(newElements);
   }
 
   useEffect(() => {
-    genCircles()
+    genCircles();
   }, []);
-  
+
+  useEffect(() => {
+    const elapsedSeconds = Math.floor(barTime / 1000); // Calculate elapsed seconds
+    ChangeCircles(elapsedSeconds); // Generate circles based on elapsed seconds
+  }, [barTime]);
 
   return (
     <div className="card">
       <div className={flip ? "flipped" : "card-size"}>
         <div className="card-container front">
-          
-          <div className={card.src === GameSettingsAtom.FindingObject ? "backOfCardRabbit" : "backOfCard"+card.color}
-            style={card.type === "image"? divStyleBigImage : divStyleText_SmallImage}
-          >
-            {isExploding && <ConfettiExplosion duration={3000} style={imgStyleText_SmallImage}/>}
-            
-            { card.type==="text" ? <b className="card-size" style={imgStyleText_SmallImage}>{card.src}</b> : 
-              
-              card.type === "gif"?
-              <GifPlayer gifSrc={card.src} style={{ maxWidth: '100%', maxHeight: '100%' }}/>
-              :
-              <img
-              src={card.src}
-              style={card.type === "image"? imgStyleBigImage : imgStyleText_SmallImage }
-              />
-              
+          <div
+            className={
+              card.src === GameSettingsAtom[NumberOfRoundsAtom].Goal.src
+                ? "backOfCardRabbit"
+                : "backOfCard" + card.color
             }
+            style={
+              card.type === "image" ? divStyleBigImage : divStyleText_SmallImage
+            }
+          >
+            {isExploding && (
+              <ConfettiExplosion
+                duration={3000}
+                style={imgStyleText_SmallImage}
+              />
+            )}
 
+            {card.type === "text" ? (
+              <b className="card-size" style={imgStyleText_SmallImage}>
+                {card.src}
+              </b>
+            ) : card.type === "gif" ? (
+              <GifPlayer
+                gifSrc={card.src}
+                cardColor={card.color}
+                style={{ maxWidth: "100%", maxHeight: "100%" }}
+              />
+            ) : (
+              <img
+                src={card.src}
+                style={
+                  card.type === "image"
+                    ? imgStyleBigImage
+                    : imgStyleText_SmallImage
+                }
+              />
+            )}
           </div>
         </div>
 
         <div className="card-container back">
-        
-        {flip ? <></> : <div className="circle-container card-size">{circles}</div>}
-    
-    
-    {flip ? <></> : <VerticalFillingBar fillPercentage={barTime / (Number(card.time) + 800) * 100} />}
-    
-    <img
-        className="back"
-        src={"/img/cover-" + card.color + ".svg"}
-        alt="cover"
-        style={{ cursor: "pointer" }}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        onDragStart={handleImageDragStart}
-    />
-</div>
+          {flip ? (
+            <></>
+          ) : (
+            <div className="circle-container card-size">{circles}</div>
+          )}
+
+          <img
+            className="back"
+            src={"/img/cover-" + card.color + ".svg"}
+            alt="cover"
+            style={{ cursor: "pointer" }}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
+            onDragStart={handleImageDragStart}
+          />
+        </div>
       </div>
     </div>
   );
