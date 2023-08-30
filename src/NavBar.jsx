@@ -3,7 +3,7 @@ import CountdownTimer from "./CountdownTimer";
 
 import { useAtom } from 'jotai'
 import { GameSettings, NumberOfRounds } from "./DataManagement";
-import ReactHtmlParser from 'react-html-parser';
+//import ReactHtmlParser from 'react-html-parser';
 
 function NavBar({isRunning, setIsRunning,matchNumber, setMatchNumber}) {
   
@@ -13,9 +13,9 @@ function NavBar({isRunning, setIsRunning,matchNumber, setMatchNumber}) {
   return (
     <div>
     <div className="header">
-        <div> {ReactHtmlParser(GameSettingsAtom[NumberOfRoundsAtom].NazevHry)} {matchNumber==0 ? "" : (NumberOfRoundsAtom+1) + GameSettingsAtom[NumberOfRoundsAtom]?.TextZaCislem}</div>
+        <div> {GameSettingsAtom[NumberOfRoundsAtom].NazevHry} {matchNumber==0 ? "" : (NumberOfRoundsAtom+1) + GameSettingsAtom[NumberOfRoundsAtom]?.TextZaCislem}</div>
         
-        { isRunning ? <div> {ReactHtmlParser(GameSettingsAtom[NumberOfRoundsAtom].ZpravaNaKonciKola)} </div> : <div></div>}
+        { isRunning ? <div> {GameSettingsAtom[NumberOfRoundsAtom].ZpravaNaKonciKola} </div> : <div></div>}
         <div>{GameSettingsAtom[NumberOfRoundsAtom].ProstorProPokyn } </div>
         
         <CountdownTimer

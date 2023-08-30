@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useAtom } from 'jotai'
 import { GameSettings, NumberOfRounds, timeLeft } from "./DataManagement";
-import ReactHtmlParser from 'react-html-parser';
+//import ReactHtmlParser from 'react-html-parser';
 
 const CountdownTimer = ({isRunning,setIsRunning, matchNumber, setMatchNumber}) => {
   
@@ -55,7 +55,7 @@ const CountdownTimer = ({isRunning,setIsRunning, matchNumber, setMatchNumber}) =
     return (
       <div>
         {isRunning ?
-        <div> {ReactHtmlParser(GameSettingsAtom[NumberOfRoundsAtom].ZpravaPriOdpoctu)} {formatTime(timeLeftAtom)} {timeLeftAtom===0 ? <button onClick={() => nextRound()}>Další kolo</button> :<></>}</div>
+        <div> {GameSettingsAtom[NumberOfRoundsAtom].ZpravaPriOdpoctu} {formatTime(timeLeftAtom)} {timeLeftAtom===0 ? <button onClick={() => nextRound()}>Další kolo</button> :<></>}</div>
           : <div>{"   "}</div>
       }
       </div>
