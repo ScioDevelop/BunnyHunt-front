@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './index.css'
+import InputForSettings from "./InputForSettings";
 
 function MenuPage() {
   return (
@@ -23,6 +24,11 @@ function MenuPage() {
       </p>
       <Link to={"/game"}> Začít hru</Link>
       {/* <div><Link to={"/settings"}> Nastavení</Link></div> */}
+      <br></br>
+      <p>Pole pro vložení nastavení hry:
+        vkládejte prosím pouze soubory textové soubory .txt
+      </p>
+      <InputForSettings />
     </div>
   );
 }

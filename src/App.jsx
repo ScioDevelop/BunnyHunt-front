@@ -73,7 +73,10 @@ function App() {
 
     if(GameSettingAtom[NumberOfRoundsAtom].Goal){  
         const remove = CardsToUse.pop()
-        CardsToUse.push(GameSettingAtom[NumberOfRoundsAtom].Goal)
+        const goalCard = GameSettingAtom[NumberOfRoundsAtom].Goal
+        console.log(goalCard);
+        //goalCard.time= goalCard.time*1000
+        CardsToUse.push(goalCard)
     }
     
     shuffleArray(CardsToUse);

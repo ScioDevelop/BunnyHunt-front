@@ -141,8 +141,8 @@ h1 {
   position: absolute;
   top: 0;
   left: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  grid-template-rows: 1fr;
   justify-content: center;
   align-items: center;
   pointer-events: none;
