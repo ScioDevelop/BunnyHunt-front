@@ -168,7 +168,6 @@ label, input {
   height: 100%;
 }
 
-
 @media (max-width: 1000px) {
   b { font-size: 3vh }
 }

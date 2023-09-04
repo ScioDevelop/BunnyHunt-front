@@ -35,7 +35,7 @@ function InputForSettings() {
                         "src": { "type": "string" },
                         "time": { "type": "number", "minimum": 1000, "maximum": 10000 },
                         "type": { "type": "string" },
-                        "color": { "type": "string", "enum": ["red", "green", "blue"] }
+                        "color": { "type": "string", "enum": ["red", "green", "blue","yellow","pink","white"] }
                       },
                       "required": ["src", "time", "type", "color"]
                     },
@@ -46,7 +46,7 @@ function InputForSettings() {
                         "type": "object",
                         "properties": {
                           "data": { "type": "string" },
-                          "color": { "type": "string", "enum": ["red", "green", "blue"] },
+                          "color": { "type": "string", "enum": ["red", "green", "blue","yellow","pink","white"] },
                           "count": { "type": "number" },
                           "time": { "type": "array", "items": { "type": "integer" } }
                         },

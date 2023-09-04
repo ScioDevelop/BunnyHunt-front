@@ -38,7 +38,6 @@ function App() {
         array[j] = temp;
       }
     }
-    console.log(NumberOfRoundsAtom)
 
     let numberOfCardsInBoard= Number(GameSettingAtom[NumberOfRoundsAtom].HraciPlocha[0]) * Number(GameSettingAtom[NumberOfRoundsAtom].HraciPlocha.slice(-1))
     let countCards = 0
@@ -74,11 +73,13 @@ function App() {
     if(GameSettingAtom[NumberOfRoundsAtom].Goal){  
         const remove = CardsToUse.pop()
         const goalCard = GameSettingAtom[NumberOfRoundsAtom].Goal
+       goalCard.id = Math.random()
         console.log(goalCard);
-        //goalCard.time= goalCard.time*1000
         CardsToUse.push(goalCard)
     }
-    
+
+    console.log(CardsToUse)
+
     shuffleArray(CardsToUse);
     setCards(CardsToUse);
 

@@ -38,12 +38,6 @@ function Game({isRunning, setIsRunning,cards,setAnalitic,shuffleCards,analitic,m
 
   useEffect(() => {
     shuffleCards();
-  }, []);
-  
-
-  useEffect(() => {
-    shuffleCards();
-    console.log(NumberOfRoundAtom)
   }, [NumberOfRoundAtom]);
 
   return (
