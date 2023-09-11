@@ -1,16 +1,19 @@
 import { useState, useRef, useEffect } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
 import GifPlayer from "./GifPlayer";
-import { useNavigate } from "react-router-dom";
+import { useNextRound } from "./useNextRound";
 
 import { useAtom } from "jotai";
-import { GameSettings, NumberOfRounds, Attempts, AttemptsColor, timeLeft } from "./DataManagement";
+import {
+  GameSettings,
+  NumberOfRounds,
+  Attempts,
+  AttemptsColor,
+  isRunning
+} from "./DataManagement";
 
 function SingleCard({
   card,
-  handleChoice,
-  setIsRunning,
-  isRunning,
   createAnaliticReport,
 }) {
   const [flip, setFlip] = useState(false);
@@ -24,13 +27,14 @@ function SingleCard({
   const timerIdRef = useRef();
 
   const [GameSettingsAtom] = useAtom(GameSettings);
-  const [NumberOfRoundsAtom, setNumberOfRoundsAtom] = useAtom(NumberOfRounds);
-  
+  const [NumberOfRoundsAtom] = useAtom(NumberOfRounds);
+
   const [AttemptsAtom, setAttemptsAtom] = useAtom(Attempts);
   const [AttemptsColorAtom, setAttemptsColorAtom] = useAtom(AttemptsColor);
-  const [timeLeftAtom, setTimeLeftAtom] = useAtom(timeLeft);
+  
+  const [isRunningAtom, setIsRunningAtom] = useAtom(isRunning);
 
-  const navigate = useNavigate();
+  const { nextRound } = useNextRound();
 
   const startTimer = () => {
     clearInterval(intervalRef.current);
@@ -45,31 +49,11 @@ function SingleCard({
     setBarTime(0);
   };
 
-  function nextRound(){
-    setAttemptsAtom(0)
-    setAttemptsColorAtom({red: 0, green: 0, blue: 0})
-    if(NumberOfRoundsAtom+1 === GameSettingsAtom.length){
-      //konec hry
-      console.log(NumberOfRoundsAtom,GameSettingsAtom.length)
-      return navigate("/end");
-
-    }else {
-      //next round
-      if(GameSettingsAtom[NumberOfRoundsAtom+1].KonecKola === "afterTime"){
-        console.log(GameSettingsAtom[NumberOfRoundsAtom+1].KonecKolaTime)
-        setTimeLeftAtom(GameSettingsAtom[NumberOfRoundsAtom+1].KonecKolaTime)
-      }
-
-      const NewData = NumberOfRoundsAtom + 1
-      setNumberOfRoundsAtom(NewData);
-    }
-  }
-
   const handleMouseDown = () => {
     startTimer();
     setIsHolding(true);
 
-    if (isRunning) {
+    if (isRunningAtom) {
       createAnaliticReport(card, true);
     } else {
       createAnaliticReport(card, false);
@@ -78,24 +62,22 @@ function SingleCard({
     timerIdRef.current = setTimeout(() => {
       setIsHolding(false);
 
-      let newAttempts = AttemptsAtom + 1
-      setAttemptsAtom(newAttempts)
-      
-      let newAttemptsColor = AttemptsColorAtom
-      newAttemptsColor[card.color] = newAttemptsColor[card.color] + 1
-      setAttemptsColorAtom(newAttemptsColor)
-      
+      let newAttempts = AttemptsAtom + 1;
+      setAttemptsAtom(newAttempts);
+
+      let newAttemptsColor = AttemptsColorAtom;
+      newAttemptsColor[card.color] = newAttemptsColor[card.color] + 1;
+      setAttemptsColorAtom(newAttemptsColor);
 
       if (GameSettingsAtom[NumberOfRoundsAtom].KonecKola === "find") {
-        if (card.src === GameSettingsAtom[NumberOfRoundsAtom].Goal.src) {
+        if (card.src === GameSettingsAtom[NumberOfRoundsAtom].Goal?.src) {
           setIsExploding(true);
           setFlip(true);
           stopTimer();
 
           const redirectTimeout = setTimeout(() => {
-            nextRound()
+            nextRound();
           }, 3000);
-
         } else {
           setFlip(true);
           stopTimer();
@@ -103,8 +85,8 @@ function SingleCard({
       }
 
       if (GameSettingsAtom[NumberOfRoundsAtom].KonecKola === "afterTime") {
-        if (card.src === GameSettingsAtom[NumberOfRoundsAtom].Goal.src) {
-          setIsRunning(true);
+        if (card.src === GameSettingsAtom[NumberOfRoundsAtom].Goal?.src) {
+          setIsRunningAtom(true);
           setIsExploding(true);
           setFlip(true);
           stopTimer();
@@ -115,34 +97,52 @@ function SingleCard({
       }
 
       if (GameSettingsAtom[NumberOfRoundsAtom].KonecKola === "afterAttempts") {
-        if(GameSettingsAtom[NumberOfRoundsAtom].afterAttemptsCount === AttemptsAtom+1){
+        if (
+          GameSettingsAtom[NumberOfRoundsAtom].afterAttemptsCount ===
+          AttemptsAtom + 1
+        ) {
           setFlip(true);
           stopTimer();
           setIsExploding(true);
-          setAttemptsAtom(0)
-          setAttemptsColorAtom({red: 0, green: 0, blue: 0})
+          setAttemptsAtom(0);
+          setAttemptsColorAtom({ red: 0, green: 0, blue: 0 });
 
-          nextRound()
-        } else{
+          nextRound();
+        } else {
           setFlip(true);
           stopTimer();
         }
       }
-      if (GameSettingsAtom[NumberOfRoundsAtom].KonecKola ==="afterSpecificColorAttempts") {
-        if(GameSettingsAtom[NumberOfRoundsAtom].afterAttemptsCount === AttemptsColorAtom[GameSettingsAtom[NumberOfRoundsAtom].afterSpecificColorAttemptsColor]){
+
+      if (
+        GameSettingsAtom[NumberOfRoundsAtom].KonecKola ===
+        "afterSpecificColorAttempts"
+      ) {
+        if (
+          GameSettingsAtom[NumberOfRoundsAtom].afterAttemptsCount ===
+          AttemptsColorAtom[
+            GameSettingsAtom[NumberOfRoundsAtom].afterSpecificColorAttemptsColor
+          ]
+        ) {
           setFlip(true);
           stopTimer();
           setIsExploding(true);
-          setAttemptsAtom(0)
-          setAttemptsColorAtom({red: 0, green: 0, blue: 0})
+          setAttemptsAtom(0);
+          setAttemptsColorAtom({ red: 0, green: 0, blue: 0 });
 
-          nextRound()
-        } else{
+          nextRound();
+        } else {
           setFlip(true);
           stopTimer();
         }
       }
-    }, card.time); // 2 seconds (adjust as needed)
+
+      if(GameSettingsAtom[NumberOfRoundsAtom].KonecKola === "afterTimeStart"){
+        setFlip(true);
+        stopTimer();
+      }
+
+    }, card.time); // time of card adjusment
   };
 
   const handleMouseUp = () => {
@@ -268,7 +268,7 @@ function SingleCard({
         <div className="card-container front">
           <div
             className={
-              card.src === GameSettingsAtom[NumberOfRoundsAtom].Goal.src
+              card.src === GameSettingsAtom[NumberOfRoundsAtom].Goal?.src
                 ? "backOfCardRabbit"
                 : "backOfCard" + card.color
             }

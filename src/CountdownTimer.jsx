@@ -1,65 +1,69 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
 
-import { useAtom } from 'jotai'
-import { GameSettings, NumberOfRounds, timeLeft } from "./DataManagement";
+import { useAtom } from "jotai";
+import {
+  GameSettings,
+  NumberOfRounds,
+  timeLeft,
+  isRunning
+} from "./DataManagement";
+
+import { useNextRound } from "./useNextRound"; // Import the custom hook
+
 //import ReactHtmlParser from 'react-html-parser';
 
-const CountdownTimer = ({isRunning,setIsRunning, matchNumber, setMatchNumber}) => {
-  
-  const [GameSettingsAtom] = useAtom(GameSettings)
-  const [NumberOfRoundsAtom, setNumberOfRoundsAtom] = useAtom(NumberOfRounds)
-  const navigate = useNavigate();
+const CountdownTimer = () => {
+  const [isRunningAtom, setIsRunningAtom] = useAtom(isRunning);
+  const [GameSettingsAtom] = useAtom(GameSettings);
+  const [NumberOfRoundsAtom, setNumberOfRoundsAtom] = useAtom(NumberOfRounds); // use for gameSettings array walktrought
 
   const [timeLeftAtom, setTimeLeftAtom] = useAtom(timeLeft);
+
+  const { nextRound } = useNextRound();
 
   const formatTime = (totalSeconds) => {
     const hours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
-    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    return `${minutes.toString().padStart(2, "0")}:${seconds
+      .toString()
+      .padStart(2, "0")}`;
   };
-  
-    useEffect(() => {
-      let timer;
-  
-      if (isRunning && timeLeftAtom > 0) {
-        timer = setInterval(() => {
-          setTimeLeftAtom((prevTime) => prevTime - 1);
-        }, 1000);
-      } else if (timeLeftAtom === 0) {
-        
-      }
-  
-      return () => {
-        clearInterval(timer);
-      };
-    }, [isRunning, timeLeftAtom]);
-    
-    function nextRound(){
-        if(NumberOfRoundsAtom+1 === GameSettingsAtom.length){
-          //konec hry
-          console.log(NumberOfRoundsAtom,GameSettingsAtom.length)
-          return navigate("/end");
 
-        }else {
-          const NewData = NumberOfRoundsAtom + 1
-          setNumberOfRoundsAtom(NewData);
-
-          setIsRunning(false);
-          setTimeLeftAtom(GameSettingsAtom[NewData]?.KonecKolaTime ?? 10)
-          console.log("Time runs down");
-        }
+  function ENDE() {
+    setIsRunningAtom(false);
+    nextRound();
   }
-  
-    return (
-      <div>
-        {isRunning ?
-        <div> {GameSettingsAtom[NumberOfRoundsAtom].ZpravaPriOdpoctu} {formatTime(timeLeftAtom)} {timeLeftAtom===0 ? <button onClick={() => nextRound()}>Další kolo</button> :<></>}</div>
-          : <div>{"   "}</div>
-      }
-      </div>
-    );
-  };
-  
-  export default CountdownTimer;
+
+  useEffect(() => {
+    let timer;
+
+    if (isRunningAtom && timeLeftAtom > 0) {
+      timer = setInterval(() => {
+        setTimeLeftAtom((prevTime) => prevTime - 1);
+      }, 1000);
+    } else if (timeLeftAtom === 0) {
+      ENDE();
+    }
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [isRunningAtom, timeLeftAtom]);
+
+  return (
+    <div>
+      {isRunningAtom ? (
+        <div>
+          {" "}
+          {GameSettingsAtom[NumberOfRoundsAtom].ZpravaPriOdpoctu}{" "}
+          {formatTime(timeLeftAtom)}
+        </div>
+      ) : (
+        <div>{"   "}</div>
+      )}
+    </div>
+  );
+};
+
+export default CountdownTimer;

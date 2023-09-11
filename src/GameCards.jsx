@@ -1,16 +1,22 @@
-import React from 'react'
+import React from "react";
 import SingleCard from "./card";
 import { useState, useEffect } from "react";
 
 //Atom
-import { useAtom } from 'jotai'
-import { NumberOfRounds,GameSettings } from "./DataManagement";
+import { useAtom } from "jotai";
+import { NumberOfRounds, GameSettings, Cards, User, matchNumber, isRunning } from "./DataManagement";
 
-function Game({isRunning, setIsRunning,cards,setAnalitic,shuffleCards,analitic,matchNumber,setMatchNumber,setUpGame}) {
-
+function Game({
+  NextRound,
+}) {
+  const [analitic, setAnalitic] = useState([]);
   const [milliseconds, setMilliseconds] = useState(0);
-  const [GameSettingsAtom] = useAtom(GameSettings)
-  const [NumberOfRoundAtom] = useAtom(NumberOfRounds)
+  const [GameSettingsAtom] = useAtom(GameSettings);
+  const [NumberOfRoundAtom,setNumberOfRoundAtom] = useAtom(NumberOfRounds);
+  const [CardsAtom, setCardsAtom] = useAtom(Cards);
+  const [UserAtom] = useAtom(User);
+  const [matchNumberAtom] = useAtom(matchNumber) // Use for counting mateches
+  const [isRunningAtom, setIsRunningAtom] = useAtom(isRunning);
 
   // milliseconds counter for analitic data
   useEffect(() => {
@@ -25,36 +31,70 @@ function Game({isRunning, setIsRunning,cards,setAnalitic,shuffleCards,analitic,m
     console.log(card);
   }
 
+  function sendAnaliticalReport(sendData) {
+    try {
+      
+      fetch("http://localhost:3000/analitic", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(sendData),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(sendData)
+        });
+
+    } catch (error) {
+      console.log("error happends:  " + error);
+    }
+  }
+
   function createAnaliticReport(card, IsBunnyFound) {
-    let newData = analitic.push({
+    const { id, ...rest } = card;
+
+    let newData = {
+      user: UserAtom,
       time: milliseconds,
-      objekt_type: card.color,
+      selectedCard: rest,
       bunnyFound: IsBunnyFound,
-      matchNumber: matchNumber,
-    });
+      matchNumber: matchNumberAtom,
+      gameName: GameSettingsAtom[NumberOfRoundAtom].GameName,
+    };
+    analitic.push(newData);
     setAnalitic([...analitic]);
     console.log(analitic);
+
+    sendAnaliticalReport(newData);
   }
 
   useEffect(() => {
-    shuffleCards();
+    NextRound()
+    if(GameSettingsAtom[NumberOfRoundAtom].KonecKola === "afterTimeStart"){
+      setIsRunningAtom(true)
+    }
   }, [NumberOfRoundAtom]);
 
   return (
-    <div className="card-grid" style={{gridTemplateColumns: "repeat(" + GameSettingsAtom[NumberOfRoundAtom].HraciPlocha[0] + ", minmax(auto, auto))"}}>
-        {cards.map((card) => (
-          <SingleCard
-            key={card.id}
-            card={card}
-            handleChoice={handleChoice}
-            setIsRunning={setIsRunning}
-            isRunning={isRunning}
-            flipped={""}
-            createAnaliticReport={createAnaliticReport}
-          />
-        ))}
-      </div>
-  )
+    <div
+      className="card-grid"
+      style={{
+        gridTemplateColumns:
+          "repeat(" +
+          GameSettingsAtom[NumberOfRoundAtom].HraciPlocha[0] +
+          ", minmax(auto, auto))",
+      }}
+    >
+      {CardsAtom.map((card) => (
+        <SingleCard
+          key={card.id}
+          card={card}
+          handleChoice={handleChoice}
+          flipped={""}
+          createAnaliticReport={createAnaliticReport}
+        />
+      ))}
+    </div>
+  );
 }
 
-export default Game
+export default Game;

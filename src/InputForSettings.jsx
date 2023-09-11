@@ -3,6 +3,7 @@ import Ajv from "ajv"
 
 import { useAtom } from 'jotai'
 import { NumberOfRounds,GameSettings } from "./DataManagement";
+const backendUrl = import.meta.env.VITE_URL_BACKEND;
 
 function InputForSettings() {
     const [fileContent, setFileContent] = useState("");
@@ -55,16 +56,17 @@ function InputForSettings() {
                     },
                     "KonecKola": {
                       "type": "string",
-                      "enum": ["find", "afterTime", "afterAttempts", "afterSpecificColorAttempts"]
+                      "enum": ["find", "afterTime", "afterAttempts", "afterSpecificColorAttempts", "afterTimeStart"]
                     },
                     "afterAttemptsCount": { "type": "integer" },
                     "afterSpecificColorAttemptsColor": { 
                         "type": "string" ,
                         "enum": ["red", "green", "blue"]
                     },
-                    "KonecKolaTime": { "type": "integer", "minimum": 1 }
+                    "KonecKolaTime": { "type": "integer", "minimum": 1 },
+                    "KonecniText": {"type": "string"}
                   },
-                  "required": ["NazevHry", "TextZaCislem", "ZpravaNaKonciKola", "ZpravaPriOdpoctu", "ProstorProPokyn", "Goal", "HraciPlocha", "Karticky", "KonecKola"]
+                  "required": ["NazevHry", "TextZaCislem", "ZpravaNaKonciKola", "ZpravaPriOdpoctu", "ProstorProPokyn", "HraciPlocha", "Karticky", "KonecKola","KonecniText"]
                 }
             }
             
@@ -88,7 +90,24 @@ function InputForSettings() {
             setFileContent(isValid ? "Všechno v pořádku" : JSON.stringify(validate.errors,null,"\t"));
             setValidationResult(isValid ? "Valid JSON" : "Chyba při zadávání JSON");
             if(isValid){
-              setGameSettingsAtom(parsedData)
+              fetch(backendUrl+"/game/post", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json", // Specify that you're sending JSON data
+                },
+                body: JSON.stringify(parsedData), // Convert the object to a JSON string
+              })
+                .then((response) => {
+                  return response.json(); // Parse the response body as JSON
+                })
+                .then((responseData) => {
+                  console.log(responseData)
+                  setGameSettingsAtom(responseData)
+                })
+                .catch((error) => {
+                  // Handle errors here
+                  console.error("There was a problem with the fetch operation:", error);
+                });
             }
             
         };
@@ -97,7 +116,10 @@ function InputForSettings() {
 };
 
 return (
-    <div>
+    <div style={{border: "solid 1px white", width: "50%",marginTop: "30px",paddingLeft: "20px",paddingRight: "20px"}}>
+      <p>Pole pro vložení nastavení hry:
+        vkládejte prosím pouze soubory textové soubory .txt
+      </p>
             <input type="file" onChange={handleFileUpload} accept=".txt,.json"/>
             <pre>{fileContent}</pre>
             <p>{validationResult}</p>

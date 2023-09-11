@@ -2,28 +2,25 @@ import React from 'react'
 import CountdownTimer from "./CountdownTimer";
 
 import { useAtom } from 'jotai'
-import { GameSettings, NumberOfRounds } from "./DataManagement";
+import { GameSettings, NumberOfRounds, matchNumber, isRunning } from "./DataManagement";
 //import ReactHtmlParser from 'react-html-parser';
 
-function NavBar({isRunning, setIsRunning,matchNumber, setMatchNumber}) {
+function NavBar({}) {
   
   const [GameSettingsAtom] = useAtom(GameSettings)
-  const [NumberOfRoundsAtom] = useAtom(NumberOfRounds)
+  const [NumberOfRoundsAtom, setNumberOfRoundsAtom] = useAtom(NumberOfRounds) // use for gameSettings array walktrought
+  const [matchNumberAtom,setmatchNumberAtom] = useAtom( matchNumber ) // Use for counting mateches
+  const [isRunningAtom, setIsRunningAtom] = useAtom(isRunning);
   
   return (
     <div>
     <div className="header">
-        <div> {GameSettingsAtom[NumberOfRoundsAtom].NazevHry} {matchNumber==0 ? "" : (NumberOfRoundsAtom+1) + GameSettingsAtom[NumberOfRoundsAtom]?.TextZaCislem}</div>
+        <div> {GameSettingsAtom[NumberOfRoundsAtom].NazevHry} {matchNumber>0 ? "" : (matchNumberAtom) + GameSettingsAtom[NumberOfRoundsAtom]?.TextZaCislem}</div>
         
-        { isRunning ? <div> {GameSettingsAtom[NumberOfRoundsAtom].ZpravaNaKonciKola} </div> : <div></div>}
+        { isRunningAtom ? <div> {GameSettingsAtom[NumberOfRoundsAtom].ZpravaNaKonciKola} </div> : <div></div>}
         <div>{GameSettingsAtom[NumberOfRoundsAtom].ProstorProPokyn } </div>
         
-        <CountdownTimer
-          setIsRunning={setIsRunning}
-          isRunning={isRunning}
-          setMatchNumber={setMatchNumber}
-          matchNumber={matchNumber}
-        ></CountdownTimer>
+        <CountdownTimer></CountdownTimer>
       
       </div>
       
