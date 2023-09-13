@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 //Atom
 import { useAtom } from "jotai";
 import { NumberOfRounds, GameSettings, Cards, User, matchNumber, isRunning } from "./DataManagement";
+const backendUrl = import.meta.env.URL_BACKEND;
 
 function Game({
   NextRound,
@@ -30,7 +31,7 @@ function Game({
   function handleChoice(card) {
     console.log(card);
   }
-  const backendUrl = import.meta.env.URL_BACKEND;
+  
   function sendAnaliticalReport(sendData) {
     try {
       
