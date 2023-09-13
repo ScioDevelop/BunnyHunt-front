@@ -54,12 +54,12 @@ function Game({
     const { id, ...rest } = card;
 
     let newData = {
-      user: UserAtom,
-      time: milliseconds,
-      selectedCard: rest,
-      bunnyFound: IsBunnyFound,
-      matchNumber: matchNumberAtom,
-      gameName: GameSettingsAtom[NumberOfRoundAtom].GameName,
+      "user": UserAtom,
+      "time": milliseconds,
+      "selectedCard": rest,
+      "bunnyFound": IsBunnyFound,
+      "matchNumber": matchNumberAtom,
+      "gameName": GameSettingsAtom[NumberOfRoundAtom].GameName
     };
     analitic.push(newData);
     setAnalitic([...analitic]);
