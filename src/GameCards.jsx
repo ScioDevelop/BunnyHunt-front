@@ -30,11 +30,11 @@ function Game({
   function handleChoice(card) {
     console.log(card);
   }
-
+  const backendUrl = import.meta.env.URL_BACKEND;
   function sendAnaliticalReport(sendData) {
     try {
       
-      fetch("http://localhost:3000/analitic", {
+      fetch(backendUrl+"/analitic", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(sendData),
