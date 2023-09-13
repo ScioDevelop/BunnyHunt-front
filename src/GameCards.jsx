@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 //Atom
 import { useAtom } from "jotai";
 import { NumberOfRounds, GameSettings, Cards, User, matchNumber, isRunning } from "./DataManagement";
-const backendUrl = import.meta.env.URL_BACKEND;
+const backendUrl = import.meta.env.VITE_URL_BACKEND;
 
 function Game({
   NextRound,
